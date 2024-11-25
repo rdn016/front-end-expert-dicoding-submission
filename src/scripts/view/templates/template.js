@@ -8,9 +8,8 @@ const createRestaurantList = (restaurant) => {
   </div>
   <img 
     src="https://restaurant-api.dicoding.dev/images/medium/${
-  restaurant.pictureId
-}" 
-    alt="restoran ${restaurant.name}" 
+  restaurant.pictureId}" 
+    alt="restoran ${restaurant.name}" crossorigin="anonymous"
   />
   <div class="card-title">
     <a href="#/detail/${restaurant.id}">${restaurant.name}</a>
