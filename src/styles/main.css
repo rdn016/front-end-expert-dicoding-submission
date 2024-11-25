@@ -1,0 +1,545 @@
+* {
+  margin: 0;
+  font-family: "Open Sans", sans-serif;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+/*sidebar*/
+.sidebar {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  background-color: #ffffff;
+  height: 100%;
+  transition: all 0.5s ease;
+  z-index: 100;
+  text-align: center;
+}
+.sidebar h1 {
+  font-size: 22px;
+  color: #fff;
+  justify-content: center;
+  line-height: 70px;
+  user-select: none;
+}
+.sidebar #side {
+  height: 100%;
+  margin-top: 5rem;
+  width: 100%;
+  line-height: 65px;
+  color: black;
+  font-size: 20px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+  transition: 0.4s;
+  text-decoration: none;
+}
+.sidebar #side li {
+  position: relative;
+  font-size: 20px;
+  padding: 10px 0;
+}
+.sidebar #side li a {
+  color: black;
+  min-width: 44px;
+  min-height: 44px;
+  display: block;
+}
+.sidebar #side li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 1.5px;
+  transform: translateX(-50%);
+  background-color: #000000;
+  transition: width 0.3s ease;
+}
+.sidebar #side li:hover a::after {
+  width: 5rem;
+}
+#check {
+  display: none;
+}
+label #btn,
+label #cancel {
+  position: fixed;
+  cursor: pointer;
+  z-index: 110;
+}
+label #btn {
+  left: 25px;
+  top: 0.7rem;
+  font-size: 30px;
+  color: black;
+  border-radius: 3px;
+  padding: 5px 10px;
+  transition: all 0.5s;
+  position: fixed;
+  z-index: 100;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+label #cancel {
+  left: -195px;
+  top: 17px;
+  font-size: 30px;
+  color: #000000;
+  padding: 4px 9px;
+  transition: all 0.5s ease;
+}
+#check:checked ~ .sidebar {
+  left: 0;
+}
+#check:checked ~ label #btn {
+  left: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel {
+  left: 195px;
+}
+#btn {
+  display: none;
+}
+#judul {
+  font-weight: bolder;
+}
+/*responsive sidebar and tulisan front end dev*/
+@media (max-width: 575px) {
+  #check:checked ~ .sidebar {
+    left: 0;
+  }
+  #check:checked ~ label #btn {
+    left: 250px;
+    opacity: 0;
+    pointer-events: none;
+  }
+  #check:checked ~ label #cancel {
+    left: 195px;
+  }
+  label {
+    display: block;
+  }
+  #btn {
+    display: block;
+  }
+  #navbar li {
+    display: none;
+  }
+  #nav-btn {
+    display: none;
+  }
+
+  nav #judul {
+    position: absolute;
+    right: 10%;
+    font-size: 18px;
+  }
+  #cancel {
+    display: block;
+  }
+  .contact-header,
+  .service,
+  .judul {
+    font-size: 13px;
+  }
+  .sidebar #side li a {
+    height: 44px;
+  }
+}
+
+/* header and navbar*/
+
+nav ul li {
+  list-style: none;
+  margin: 5px 20px 0 20px;
+  position: relative;
+}
+#navbar {
+  display: flex;
+}
+header {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 99;
+}
+nav {
+  top: 0;
+  right: 0;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.5s ease;
+  display: flex;
+  margin: auto;
+  width: 90%;
+  height: 55px;
+  line-height: normal;
+  padding-left: 18px;
+}
+
+nav ul li::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1.5px;
+  background: black;
+  transition: all 0.3s;
+  width: 0;
+}
+
+nav ul li:hover::after {
+  width: 100%;
+}
+
+nav ul li a {
+  color: var(--header);
+  min-width: 44px;
+  min-height: 44px;
+  display: block;
+  line-height: 44px;
+}
+
+span {
+  color: #fa0;
+}
+
+/* landing page */
+.moto {
+  padding-top: 20%;
+  color: white;
+  font-size: 20px;
+}
+.moto-container {
+  width: 80%;
+  margin: auto;
+}
+.hero {
+  width: 100%;
+  height: 75vh;
+  padding-top: 60px;
+  background: url(../public/hero-image.jpg) no-repeat center;
+  background-size: cover;
+}
+@media screen and (min-width: 1200px) {
+  .hero {
+    min-width: 1000px;
+  }
+}
+#moto {
+  background-color: rgba(255, 170, 0, 0.8);
+  color: white;
+  padding: 0 30px 0 3px;
+}
+@media screen and (max-width: 1025px) {
+  .moto {
+    font-size: 15px;
+    padding-top: 5rem;
+  }
+  .hero {
+    height: 40vh;
+  }
+}
+@media screen and (max-width: 500px) {
+  .moto {
+    font-size: 12px;
+  }
+}
+
+/* list */
+
+#list {
+  color: #fa0;
+  font-size: 25px;
+  padding-top: 5rem;
+  margin-left: 6rem;
+}
+.list {
+  width: 85%;
+  margin: auto;
+}
+.list-cards {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 240px));
+  place-content: center;
+}
+.card {
+  min-width: 200px;
+  padding: 20px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.162);
+  min-height: 200px;
+}
+
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.card-title a {
+  font-size: 18px;
+  color: #34364a;
+  font-weight: 700;
+}
+.card-head p {
+  font-weight: 600;
+  color: rgb(253, 198, 88);
+}
+.card img {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  z-index: 1;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 500px) {
+  .card {
+    margin-top: 10px;
+  }
+  #list {
+    margin-left: auto;
+  }
+}
+/* footer */
+:root {
+  --header: #34364a;
+  --child: #b0b0b0;
+}
+footer {
+  display: flex;
+  justify-content: space-around;
+  max-width: 90%;
+  margin: auto;
+  margin-bottom: 16px;
+  margin-top: 20px;
+}
+.contact {
+  padding-right: 0;
+  width: 32%;
+}
+.about {
+  width: 30%;
+}
+.about-desc,
+.contact-list li,
+footer p {
+  color: var(--child);
+}
+.about-desc,
+.contact-list li {
+  padding: 10px 0 10px 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .about-desc,
+  .contact-list li {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 573px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .about,
+  /* .services, */
+  .contact {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* submission */
+#skip-button {
+  position: absolute;
+  top: -40px;
+  font-size: 22px;
+  left: 0;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  z-index: 99999;
+}
+#skip-button:focus {
+  top: 0;
+}
+
+/* detail page */
+.detail {
+  min-width: 65%;
+  padding: 70px 20px 20px 20px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr; 
+  grid-template-rows: auto auto auto; 
+  gap: 20px;
+}
+
+.detail-main h1 {
+  font-size: 24px;
+  margin-bottom: 7px;
+  color: #fa0;
+}
+
+.detail span {
+  margin-left: 5px;
+}
+
+.detail img {
+  width: 100%;
+}
+
+.restaurant-information h3 {
+  margin-bottom: 2px;
+}
+
+.restaurant-information p {
+  margin-bottom: 5px;
+}
+
+.restaurant-information-menu {
+  margin-top: 16px;
+}
+
+.restaurant-information-menu-header {
+  color: #fa0;
+  font-size: 20px;
+}
+
+.restaurant-information-menu h3 {
+  margin: 2px 0;
+}
+
+.restaurant-description p{
+  font-size: 14px;
+}
+.restaurant-description {
+  height: fit-content;
+}
+/* comment section */
+/* styles.css */
+:root {
+  --text-color: #333333;
+  --accent-color: #ffd966; /* Kuning lebih pekat */
+  --border-color: #f0e1c2;
+}
+
+
+.comment-section {
+  padding: 16px;
+}
+
+.section-title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: var(--accent-color);
+}
+
+.comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-card {
+  background: white;
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.comment-card .name {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.comment-card .date {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 8px;
+}
+
+.comment-card .review {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+@media screen and (min-width: 610px) {
+  .detail {
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr .3fr; 
+    width: 70%;
+    padding-top: 150px;
+  }
+
+  .detail-main {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;    
+  }
+
+  .restaurant-information {
+    grid-column: 2 / 3; 
+    grid-row: 1 / 2;    
+  }
+
+  .restaurant-description {
+    grid-column: 1 / 3; 
+    grid-row: 2 / 3;    
+  }
+  .comment-section{
+    grid-column: 1 / 3; 
+    grid-row: 3 / 3; 
+  }
+
+  .detail img {
+    max-width: 400px; 
+  }
+
+  .detail-main h1 {
+    font-size: 27px;
+  }
+
+  .restaurant-information-menu-header {
+    font-size: 22px;
+  }
+}
+
+/* loading indicator */
+#loading {
+  min-width: 100%;
+  min-height: 100%;
+  text-align: center;
+  position: absolute;
+  margin-top: 20px;
+}
+
+/* like button */
+
+.like {
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #ffd966;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  border-radius: 50%;
+  border: 0;
+  
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
