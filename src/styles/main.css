@@ -7,6 +7,10 @@
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
+a, input, button, textarea {
+  min-width: 44px;
+  min-height: 44px;
+}
 /*sidebar*/
 .sidebar {
   position: fixed;
@@ -23,7 +27,6 @@
   color: #fff;
   justify-content: center;
   line-height: 70px;
-  user-select: none;
 }
 .sidebar #side {
   height: 100%;
@@ -288,6 +291,7 @@ span {
   font-size: 18px;
   color: #34364a;
   font-weight: 700;
+  display: block;
 }
 .card-head p {
   font-weight: 600;
