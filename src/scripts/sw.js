@@ -14,8 +14,7 @@ const restaurantApi = new Route(
 
 const restaurantImgApi = new Route(
   ({ url }) => {
-    url.href.startsWith('https://restaurant-api.dicoding.dev/images/medium/') &&
-    url.pathname.endsWith('.png');
+    return url.href.startsWith('https://restaurant-api.dicoding.dev/images/medium/');
   },
   new StaleWhileRevalidate({
     cacheName: 'restaurant-img',
