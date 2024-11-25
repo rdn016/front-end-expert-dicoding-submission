@@ -8,7 +8,8 @@ const restaurantApi = new Route(
   ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/list/'),
   new StaleWhileRevalidate({
     cacheName: 'restaurant-list',
-  })
+  }),
+  console.log('restaurant registered')
 );
 
 const restaurantImgApi = new Route(
@@ -18,7 +19,8 @@ const restaurantImgApi = new Route(
   },
   new StaleWhileRevalidate({
     cacheName: 'restaurant-img',
-  })
+  }),
+  console.log('restaurant img registered')
 );
 
 registerRoute(restaurantApi);

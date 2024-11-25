@@ -2,7 +2,7 @@ export function sleep(response){
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(response);
-    }, 200);
+    }, 0);
   });
 }
 export function showLoading(element){

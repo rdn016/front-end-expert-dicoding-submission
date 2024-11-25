@@ -7,7 +7,6 @@ const likedPage = {
     <div class="list">
     <h1 id="list">Liked Restaurant </h1>
     <br />
-    <p id="loading">Loading...</p>
     <div class="list-cards" id="list-cards">
 
     </div>

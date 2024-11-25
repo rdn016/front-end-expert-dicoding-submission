@@ -11,7 +11,8 @@ const api = {
       }
 
       await sleep();
-      const responseJson = response.json();
+
+      const responseJson = await response.json();
       return responseJson;
     } catch (error) {
       console.error(error);
@@ -32,7 +33,7 @@ const api = {
 
       await sleep();
 
-      const responseJson = response.json();
+      const responseJson = await response.json();
       return responseJson;
     } catch (error) {
       console.error(error);
