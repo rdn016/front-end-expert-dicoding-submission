@@ -41,19 +41,26 @@ module.exports = {
       swDest: './sw.bundle.js',
       runtimeCaching: [
         {
-          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/list/'),
+          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/list'),
           handler: 'StaleWhileRevalidate',
           options: {
             cacheName:'restaurant-list',
           },
         },
         {
-          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/images/medium/'),
+          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/images/medium'),
+          handler: 'CacheFirst',
+          options: {
+            cacheName:'restaurant-img',
+          },
+        },
+        {
+          urlPattern: ({ url }) => url.href.startsWith('https://restaurant-api.dicoding.dev/detail'),
           handler: 'StaleWhileRevalidate',
           options: {
-            cacheName:'restaurant-images',
+            cacheName:'restaurant-detail',
           },
-        }
+        },
       ]
     }),
   ],
