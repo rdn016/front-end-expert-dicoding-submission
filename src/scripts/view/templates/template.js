@@ -1,7 +1,7 @@
 const createRestaurantList = (restaurant) => {
-  const tabIndex = 3;
+
   return `
-<div class="card" tabindex="${tabIndex + 2}" id="${restaurant.id}">
+<div class="card" tabindex="0" id="${restaurant.id}">
   <div class="card-head">
     <p id="city">${restaurant.city}</p>
     <p id="rating">★ ${restaurant.rating}</p>
@@ -40,7 +40,7 @@ const createRestaurantDetail = (restaurant) => {
         <h1>${restaurant.name} <span>${restaurant.rating} ★</span></h1>
         <img
           src="https://restaurant-api.dicoding.dev/images/medium/${restaurant.pictureId}"
-          alt="gambar ${restaurant.name}"
+          alt="gambar ${restaurant.name}" crossorigin="anonymous"
         />
       </div>
    <div class="restaurant-information">
