@@ -36,8 +36,6 @@ const restaurantDetail = {
           categories: restaurants.categories,
         },
       });
-    } else {
-      console.error('Like button container tidak ditemukan!');
     }
   }
 };
