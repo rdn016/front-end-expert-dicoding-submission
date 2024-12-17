@@ -30,7 +30,6 @@ describe('like restaurant', () => {
 
       likeButton.dispatchEvent(new Event('click'));
       const restaurant = await favoriteRestaurantidb.getRestaurant(1);
-      console.log(restaurant);
       expect(restaurant).toEqual([]);
     });
 
