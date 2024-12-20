@@ -328,6 +328,8 @@ span {
     margin-left: auto;
   }
 }
+
+
 /* footer */
 :root {
   --header: #34364a;
@@ -533,14 +535,6 @@ footer p {
   }
 }
 
-/* loading indicator */
-#loading {
-  min-width: 100%;
-  min-height: 100%;
-  text-align: center;
-  position: absolute;
-  margin-top: 20px;
-}
 
 /* like button */
 

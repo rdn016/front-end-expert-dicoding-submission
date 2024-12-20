@@ -1,4 +1,4 @@
-import { createRestaurantList, } from '../templates/template';
+import { createRestaurantList, skeletonRestaurantList } from '../templates/template';
 import favoriteRestaurantidb from '../../../global/liked-restaurant';
 
 const likedPage = {
@@ -13,11 +13,19 @@ const likedPage = {
   </div>`;
   },
   async afterRender(){
-    const restaurants = await favoriteRestaurantidb.getAllRestaurants();
     const restaurantContainer = document.querySelector('#list-cards');
-    restaurants.forEach((restaurant) => {
-      restaurantContainer.innerHTML += createRestaurantList(restaurant);
-    });
+    // Render skeletons
+    for (let i = 0; i < 1; i++) {
+      restaurantContainer.innerHTML += skeletonRestaurantList();
+    }
+    const restaurants = await favoriteRestaurantidb.getAllRestaurants();
+    setTimeout(() => {
+      restaurantContainer.innerHTML = '';
+
+      restaurants.forEach((restaurant) => {
+        restaurantContainer.innerHTML += createRestaurantList(restaurant);
+      });
+    }, 500);
   }
 };
 export default likedPage;

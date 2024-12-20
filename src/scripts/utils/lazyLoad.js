@@ -1,7 +1,7 @@
 import 'lazysizes';
 import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-const start = 10;
+const start = 5;
 const totalImage = 20;
 
 const generateImage = () => {

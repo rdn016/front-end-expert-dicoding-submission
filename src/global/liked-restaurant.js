@@ -5,23 +5,52 @@ const storeName = 'restaurants';
 const dbversion = 1;
 
 const dbPromise = openDB(dbName, dbversion, {
-  upgrade(database){
+  upgrade(database) {
     database.createObjectStore(storeName, { keyPath: 'id' });
   }
 });
 
 const favoriteRestaurantidb = {
-  async getRestaurant(id){
-    return (await dbPromise).get(storeName, id);
+  async getRestaurant(id) {
+    if (!id) {
+      return;
+    }
+    try {
+      return await (await dbPromise).get(storeName, id);
+    } catch (error) {
+      console.error('Failed to get restaurant:', error);
+    }
   },
-  async getAllRestaurants(){
-    return (await dbPromise).getAll(storeName);
+
+  async getAllRestaurants() {
+    try {
+      return await (await dbPromise).getAll(storeName);
+    } catch (error) {
+      console.error('Failed to get all restaurants:', error);
+    }
   },
-  async putRestaurant(restaurant){
-    return (await dbPromise).put(storeName, restaurant);
+
+  async putRestaurant(restaurant) {
+    if (!restaurant || !restaurant.hasOwnProperty('id')) {
+      return;
+    }
+    try {
+      return await (await dbPromise).put(storeName, restaurant);
+    } catch (error) {
+      console.error('Failed to put restaurant:', error);
+    }
   },
-  async deleteRestaurant(id){
-    return (await dbPromise).delete(storeName, id);
+
+  async deleteRestaurant(id) {
+    if (!id) {
+      console.error('No ID provided for deleteRestaurant');
+      return;
+    }
+    try {
+      return await (await dbPromise).delete(storeName, id);
+    } catch (error) {
+      console.error('Failed to delete restaurant:', error);
+    }
   }
 };
 

@@ -17,10 +17,10 @@ Scenario('Liking a restaurant',  async ({ I }) => {
   I.click('#likeBtn');
 
   I.amOnPage('/#/liked');
-  const likedRestaurantTitle = await I.grabTextFrom('.card-title a');
+  const restaurantTitle = await I.grabTextFrom('.card-title a');
   I.seeElement('.card');
 
-  assert.strictEqual(firstRestaurantTitle, likedRestaurantTitle);
+  assert.strictEqual(firstRestaurantTitle, restaurantTitle);
 });
 
 Scenario('unLiking a restaurant', async ({ I }) => {

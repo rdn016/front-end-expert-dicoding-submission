@@ -1,5 +1,5 @@
 import api from '../../../global/restaurant-api.js';
-import { createRestaurantList } from '../templates/template.js';
+import { createRestaurantList, skeletonRestaurantList } from '../templates/template.js';
 
 const restaurantList = {
   async render() {
@@ -18,13 +18,23 @@ const restaurantList = {
   },
 
   async afterRender() {
-    const restaurantData = await api.getRestaurants();
-    const restaurants = restaurantData.restaurants;
     const restaurantContainer = document.querySelector('#list-cards');
 
-    restaurants.forEach((restaurant) => {
-      restaurantContainer.innerHTML += createRestaurantList(restaurant);
-    });
+    // Render skeletons
+    for (let i = 0; i < 20; i++) {
+      restaurantContainer.innerHTML += skeletonRestaurantList();
+    }
+
+    const restaurantData = await api.getRestaurants();
+    const restaurants = restaurantData.restaurants;
+
+    setTimeout(() => {
+      restaurantContainer.innerHTML = '';
+
+      restaurants.forEach((restaurant) => {
+        restaurantContainer.innerHTML += createRestaurantList(restaurant);
+      });
+    }, 1000);
   },
 };
 

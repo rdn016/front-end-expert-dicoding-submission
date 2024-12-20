@@ -1,9 +1,11 @@
 const createRestaurantList = (restaurant) => {
-  import('lazysizes').then(() => {
-    console.log('lazysizes library loaded');
-  }).catch((error) => {
-    console.error('Failed to load lazysizes', error);
-  });
+  import('lazysizes')
+    .then(() => {
+      console.log('lazysizes library loaded');
+    })
+    .catch((error) => {
+      console.error('Failed to load lazysizes', error);
+    });
 
   return `
   <div class="card" tabindex="0" id="${restaurant.id}">
@@ -43,7 +45,9 @@ const createRestaurantDetail = (restaurant) => {
       <div class="detail-main">
         <h1>${restaurant.name} <span>${restaurant.rating} ★</span></h1>
         <img
-          src="https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}"
+          src="https://restaurant-api.dicoding.dev/images/small/${
+  restaurant.pictureId
+}"
           alt="gambar ${restaurant.name}" crossorigin="anonymous"
         />
       </div>
@@ -91,9 +95,22 @@ const createLikedButtonTemplate = () => `
   </button>
 `;
 
+const skeletonRestaurantList = () => `
+  <div class="skeleton">
+    <div class="skeleton-head">
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line short"></div>
+    </div>
+    <div class="skeleton-image"></div>
+    <div class="skeleton-line"></div>
+    <div class="skeleton-line short"></div>
+  </div>
+`;
+
 export {
   createRestaurantDetail,
   createRestaurantList,
   createLikeButtonTemplate,
   createLikedButtonTemplate,
+  skeletonRestaurantList,
 };

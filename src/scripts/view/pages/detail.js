@@ -2,6 +2,7 @@ import api from '../../../global/restaurant-api';
 import { createRestaurantDetail } from '../templates/template';
 import urlParser from '../../routes/url-parser';
 import likeButtonInitiator from '../../utils/like-btn-initiator';
+import favoriteRestaurantidb from '../../../global/liked-restaurant';
 
 const restaurantDetail = {
   async render() {
@@ -26,7 +27,8 @@ const restaurantDetail = {
     if (likeButtonContainer) {
       likeButtonInitiator.init({
         container: likeButtonContainer,
-        likedRestaurant: {
+        favoriteRestaurant: favoriteRestaurantidb,
+        restaurant: {
           id: restaurants.id,
           city: restaurants.city,
           name: restaurants.name,
