@@ -1,5 +1,6 @@
 import api from '../../../global/restaurant-api.js';
 import { createRestaurantList, skeletonRestaurantList } from '../templates/template.js';
+import lazyLoadElements from '../../utils/lazyLoad.js';
 
 const restaurantList = {
   async render() {
@@ -34,7 +35,8 @@ const restaurantList = {
       restaurants.forEach((restaurant) => {
         restaurantContainer.innerHTML += createRestaurantList(restaurant);
       });
-    }, 1000);
+      lazyLoadElements();
+    }, 500);
   },
 };
 

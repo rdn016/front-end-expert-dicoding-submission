@@ -2,7 +2,6 @@ import '../styles/main.css';
 import '../public/hero/hero-image.jpg';
 import App from './view/app';
 import swRegister from './utils/register-sw';
-import loadFontAwesome from './utils/load-icon';
 
 const hamburger = document.getElementById('btn');
 const closeBtn = document.getElementById('cancel');
@@ -32,8 +31,5 @@ window.addEventListener('load', () => {
   swRegister();
 });
 
-loadFontAwesome();
-
-window.addEventListener('resize', loadFontAwesome);
 
 

@@ -8,21 +8,23 @@ const createRestaurantList = (restaurant) => {
     });
 
   return `
-  <div class="card" tabindex="0" id="${restaurant.id}">
-    <div class="card-head">
-      <p id="city">${restaurant.city}</p>
-      <p id="rating">★ ${restaurant.rating}</p>
+    <div class="card lazyload" tabindex="0" id="${restaurant.id}">
+      <div class="card-head lazyload">
+        <p id="city">${restaurant.city}</p>
+        <p id="rating">★ ${restaurant.rating}</p>
+      </div>
+      <div class="skeleton-image"></div>
+      <img 
+        class="lazyload"
+        data-src="https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}" 
+        alt="restoran ${restaurant.name}" crossorigin="anonymous"
+        style="display: none;"
+      />
+      <div class="card-title lazyload">
+        <a href="#/detail/${restaurant.id}">${restaurant.name}</a>
+      </div>
     </div>
-    <img 
-      class="lazyload"
-      data-src="https://restaurant-api.dicoding.dev/images/small/${restaurant.pictureId}" 
-      alt="restoran ${restaurant.name}" crossorigin="anonymous"
-    />
-    <div class="card-title">
-      <a href="#/detail/${restaurant.id}">${restaurant.name}</a>
-    </div>
-  </div>
-  `;
+    `;
 };
 
 const createCustomerReviews = (reviews) => {

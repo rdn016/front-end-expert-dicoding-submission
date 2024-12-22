@@ -15,10 +15,12 @@ const likedPage = {
   async afterRender(){
     const restaurantContainer = document.querySelector('#list-cards');
     // Render skeletons
-    for (let i = 0; i < 1; i++) {
-      restaurantContainer.innerHTML += skeletonRestaurantList();
-    }
     const restaurants = await favoriteRestaurantidb.getAllRestaurants();
+    if (restaurants.length > 0){ {
+      for (let i = 0; i < 1; i++) {
+        restaurantContainer.innerHTML += skeletonRestaurantList();
+      }
+    }
     setTimeout(() => {
       restaurantContainer.innerHTML = '';
 
@@ -26,6 +28,7 @@ const likedPage = {
         restaurantContainer.innerHTML += createRestaurantList(restaurant);
       });
     }, 500);
+    }
   }
 };
 export default likedPage;
