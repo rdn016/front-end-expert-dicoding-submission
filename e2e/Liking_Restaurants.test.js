@@ -45,3 +45,17 @@ Scenario('unLiking a restaurant', async ({ I }) => {
   I.wait('.card-title a');
 
 });
+
+Scenario('Persisting liked state after reload', ({ I }) => {
+  I.amOnPage('/');
+  I.waitForElement('.card-title a');
+  I.seeElement('.card-title a');
+  const firstRestaurant = locate('.card-title a').first();
+  I.click(firstRestaurant);
+  I.seeElement('#likeBtn');
+  I.click('#likeBtn');
+  I.seeElement('[aria-label="unlike this restaurant"]');
+  I.refreshPage();
+  I.seeElement('[aria-label="unlike this restaurant"]');
+});
+
