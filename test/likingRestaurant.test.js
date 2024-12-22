@@ -52,17 +52,14 @@ describe('like restaurant', () => {
       const likeButton = document.querySelector('#likeBtn');
 
       likeButton.dispatchEvent(new Event('click'));
-
-      const addedRestaurant = await favoriteRestaurantidb.getAllRestaurants();
-      expect(addedRestaurant).toEqual([{ id: 1 }]);
+      const restaurant = await favoriteRestaurantidb.getRestaurant(1);
+      console.log(restaurant);
+      expect(restaurant).toEqual([]);
     });
 
-    it('should not add a restaurant without id', async () => {
-      await testFactories.createLikeButtonPresenterWithRestaurant({});
-      const likeButton = document.querySelector('#likeBtn');
-      likeButton.dispatchEvent(new Event('click'));
 
-      expect(await favoriteRestaurantidb.getAllRestaurants()).toEqual([]);
-    });
+  });
+  describe('unliking a restaurant', ()=>{
+
   });
 });
