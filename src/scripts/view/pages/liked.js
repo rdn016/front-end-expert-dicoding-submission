@@ -1,5 +1,6 @@
 import { createRestaurantList, skeletonRestaurantList } from '../templates/template';
 import favoriteRestaurantidb from '../../../global/liked-restaurant';
+import lazyLoadElements from '../../utils/lazyLoad';
 
 const likedPage = {
   async render(){
@@ -27,6 +28,7 @@ const likedPage = {
       restaurants.forEach((restaurant) => {
         restaurantContainer.innerHTML += createRestaurantList(restaurant);
       });
+      lazyLoadElements();
     }, 500);
     }
   }
