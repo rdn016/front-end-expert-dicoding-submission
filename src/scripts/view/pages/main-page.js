@@ -20,7 +20,6 @@ const restaurantList = {
 
   async afterRender() {
     const restaurantContainer = document.querySelector('#list-cards');
-
     // Render skeletons
     for (let i = 0; i < 20; i++) {
       restaurantContainer.innerHTML += skeletonRestaurantList();
