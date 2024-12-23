@@ -1,5 +1,4 @@
 import '../styles/main.css';
-import '../public/hero/hero-image.jpg';
 import App from './view/app';
 import swRegister from './utils/register-sw';
 

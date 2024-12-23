@@ -1,12 +1,7 @@
-const createRestaurantList = (restaurant) => {
-  import('lazysizes')
-    .then(() => {
-      console.log('lazysizes library loaded');
-    })
-    .catch((error) => {
-      console.error('Failed to load lazysizes', error);
-    });
+import loadLazySizes from '../../utils/load-lazysizes';
 
+const createRestaurantList = (restaurant) => {
+  loadLazySizes();
   return `
     <div class="card lazyload" tabindex="0" id="${restaurant.id}">
       <div class="card-head lazyload">
@@ -105,7 +100,7 @@ const skeletonRestaurantList = () => `
     </div>
     <div class="skeleton-image"></div>
     <div class="skeleton-line"></div>
-    <div class="skeleton-line short"></div>
+
   </div>
 `;
 

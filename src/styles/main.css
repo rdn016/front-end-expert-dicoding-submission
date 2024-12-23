@@ -7,8 +7,8 @@
   scroll-behavior: smooth;
   box-sizing: border-box;
 }
-body {
-  min-height: 1200px;
+#mainContent {
+  min-height: 400px;
 }
 a, input, button, textarea {
   min-width: 44px;
@@ -233,15 +233,8 @@ span {
   height: 75vh;
   padding-top: 60px;
   position: relative;
-}
-.hero picture img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
+  background: url(../public/hero/hero-image-large.jpg) no-repeat;
+  background-size: cover;
 }
 
 @media screen and (min-width: 1200px) {
@@ -268,9 +261,14 @@ span {
     font-size: 12px;
   }
 }
+@media screen and (max-width: 780px) {
+  .hero {
+    background: url(../public/hero/hero-image-small.jpg) no-repeat;
+    background-size: cover;
+  }
+}
 
 /* list */
-
 #list {
   color: #fa0;
   font-size: 25px;
@@ -288,7 +286,7 @@ span {
   place-content: center;
 }
 .card {
-width: 240px;
+  width: 240px;
   padding: 20px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.162);
   height: 270px;
@@ -327,10 +325,10 @@ width: 240px;
 }
 /* skeleton ui */
 .skeleton {
-  min-width: 200px;
+  width: 240px;
   padding: 20px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.162);
-  min-height: 200px;
+  height: 270px;
 }
 
 .skeleton-head {
@@ -355,10 +353,10 @@ width: 240px;
 .skeleton-image {
   width: 200px;
   height: 150px;
-  background: #e0e0e0;
-  border-radius: 4px;
-  animation: shimmer 1.5s infinite linear;
+  position: relative;
+  z-index: 1;
   margin-bottom: 6px;
+  animation: shimmer 1.5s infinite linear;
 }
 
 @media (max-width: 500px) {
@@ -389,53 +387,15 @@ width: 240px;
 
 
 /* footer */
-:root {
-  --header: #34364a;
-  --child: #b0b0b0;
-}
 footer {
-  display: flex;
-  justify-content: space-around;
-  max-width: 90%;
-  margin: auto;
-  margin-bottom: 16px;
-  margin-top: 20px;
-}
-.contact {
-  padding-right: 0;
-  width: 32%;
-}
-.about {
-  width: 30%;
-}
-.about-desc,
-.contact-list li,
-footer p {
-  color: var(--child);
-}
-.about-desc,
-.contact-list li {
-  padding: 10px 0 10px 0;
-}
-
-@media screen and (max-width: 1024px) {
-  .about-desc,
-  .contact-list li {
-    font-size: 13px;
-  }
-}
-@media screen and (max-width: 573px) {
-  footer {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .about,
-  /* .services, */
-  .contact {
-    width: 100%;
-    text-align: center;
-  }
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 20px 0 20px 0;
+  position: relative;
+  bottom: 0;
+  font-size: 1rem;
+  min-height: 40px;
 }
 
 /* submission */
