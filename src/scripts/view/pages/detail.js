@@ -1,5 +1,5 @@
 import api from '../../../global/restaurant-api';
-import { createRestaurantDetail } from '../templates/template';
+import { createRestaurantDetail, createSkeletonRestaurantDetail } from '../templates/template';
 import urlParser from '../../routes/url-parser';
 import likeButtonInitiator from '../../utils/like-btn-initiator';
 import favoriteRestaurantidb from '../../../global/liked-restaurant';
@@ -20,9 +20,11 @@ const restaurantDetail = {
     const restaurants = restaurantData.restaurant;
 
     const container = document.querySelector('.detail');
-    container.innerHTML = '<p id="loading">Loading...</p>';
-    container.innerHTML = createRestaurantDetail(restaurants);
-
+    container.innerHTML = createSkeletonRestaurantDetail();
+    setTimeout(() => {
+      container.innerHTML = '';
+      container.innerHTML = createRestaurantDetail(restaurants);
+    }, 150);
     const likeButtonContainer = document.querySelector('#likeButtonContainer');
     if (likeButtonContainer) {
       likeButtonInitiator.init({

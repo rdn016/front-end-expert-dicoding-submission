@@ -1,7 +1,7 @@
-import loadLazySizes from '../../utils/load-lazysizes';
+// import loadLazySizes from '../../utils/load-lazysizes';
 
 const createRestaurantList = (restaurant) => {
-  loadLazySizes();
+  // loadLazySizes();
   return `
     <div class="card lazyload" tabindex="0" id="${restaurant.id}">
       <div class="card-head lazyload">
@@ -83,12 +83,12 @@ const createRestaurantDetail = (restaurant) => {
 
 const createLikeButtonTemplate = () => `
     <button aria-label="like this restaurant" id="likeBtn" class="like">
-     <i class="fa fa-heart-o" aria-hidden="true"></i>
+     <i class="fa fa-heart-o" role="button" tabindex="0" aria-hidden="false"></i>
 `;
 
 const createLikedButtonTemplate = () => `
   <button aria-label="unlike this restaurant" id="likeBtn" class="like">
-    <i class="fa fa-heart" aria-hidden="true"></i>
+    <i class="fa fa-heart" arole="button" tabindex="0" aria-hidden="false"></i>
   </button>
 `;
 
@@ -104,10 +104,56 @@ const skeletonRestaurantList = () => `
   </div>
 `;
 
+const createSkeletonRestaurantDetail = () => {
+  return `
+      <div class="skeleton-detail">
+        <h1 class="skeleton-detail-line"></h1>
+        <div class="skeleton-detail-image"></div>
+      </div>
+      <div class="skeleton-detail-info">
+        <h3 class="skeleton-detail-line"></h3>
+        <p class="skeleton-detail-line skeleton-detail-line-short"></p>
+        <h3 class="skeleton-detail-line"></h3>
+        <p class="skeleton-detail-line skeleton-detail-line-short"></p>
+        <h3 class="skeleton-detail-line"></h3>
+        <p class="skeleton-detail-line skeleton-detail-line-short"></p>
+        <div class="skeleton-detail-menu">
+          <h3 class="skeleton-detail-line"></h3>
+          <h3 class="skeleton-detail-line"></h3>
+          <p class="skeleton-detail-line skeleton-detail-line-short"></p>
+          <h3 class="skeleton-detail-line"></h3>
+          <p class="skeleton-detail-line skeleton-detail-line-short"></p>
+        </div>
+      </div>
+      <div class="skeleton-detail-description">
+        <h3 class="skeleton-detail-title"></h3>
+        <p class="skeleton-detail-line"></p>
+        <p class="skeleton-detail-line"></p>
+      </div>
+      <div class="skeleton-detail-comments">
+        <h1 class="skeleton-detail-title"></h1>
+        <div class="skeleton-detail-comments-container">
+          <div class="skeleton-detail-comment-card">
+            <div class="skeleton-detail-title"></div>
+            <div class="skeleton-detail-line skeleton-detail-line-short"></div>
+            <div class="skeleton-detail-line" ></div>
+          </div>
+          <div class="skeleton-detail-comment-card">
+            <div class="skeleton-detail-title"></div>
+            <div class="skeleton-detail-line skeleton-detail-line-short"></div>
+            <div class="skeleton-detail-line"></div>
+          </div>
+        </div>
+      </div>
+  `;
+};
+
+
 export {
   createRestaurantDetail,
   createRestaurantList,
   createLikeButtonTemplate,
   createLikedButtonTemplate,
   skeletonRestaurantList,
+  createSkeletonRestaurantDetail
 };

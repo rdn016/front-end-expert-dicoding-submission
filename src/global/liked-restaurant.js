@@ -31,6 +31,7 @@ const favoriteRestaurantidb = {
   },
 
   async putRestaurant(restaurant) {
+    // eslint-disable-next-line no-prototype-builtins
     if (!restaurant || !restaurant.hasOwnProperty('id')) {
       return;
     }
