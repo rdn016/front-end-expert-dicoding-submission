@@ -10,7 +10,7 @@
 #mainContent {
   min-height: 400px;
 }
-a, input, button, textarea {
+a, button, label #btn, label #cancel {
   min-width: 44px;
   min-height: 44px;
 }
@@ -83,13 +83,10 @@ label #btn {
   top: 0.7rem;
   font-size: 30px;
   color: black;
-  border-radius: 3px;
   padding: 5px 10px;
   transition: all 0.5s;
   position: fixed;
   z-index: 100;
-  min-width: 44px;
-  min-height: 44px;
 }
 
 label #cancel {
@@ -130,12 +127,6 @@ label #cancel {
   #check:checked ~ label #cancel {
     left: 195px;
   }
-  label {
-    display: block;
-  }
-  #btn {
-    display: block;
-  }
   #navbar li {
     display: none;
   }
@@ -148,7 +139,7 @@ label #cancel {
     right: 10%;
     font-size: 18px;
   }
-  #cancel {
+  label #btn, label #cancel {
     display: block;
   }
   .contact-header,
@@ -324,6 +315,8 @@ span {
   }
 }
 /* skeleton ui */
+
+/* main page and liked skeleton */
 .skeleton {
   width: 240px;
   padding: 20px;
@@ -367,6 +360,61 @@ span {
     margin-left: auto;
   }
 }
+
+/* detail and comment skeleton */
+
+.skeleton-detail-line {
+  width: 100%;
+  height: 24px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+  margin-bottom: 8px;
+}
+.skeleton-detail-title {
+  width: 45%;
+  height: 28px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+  margin-bottom: 8px;
+}
+
+.skeleton-detail-line-short {
+  width: 25%;
+}
+
+.skeleton-detail-image {
+  width: 100%;
+  height: 150px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  animation: shimmer 1.5s infinite linear;
+  margin-bottom: 6px;
+}
+
+.skeleton-detail-info,
+.skeleton-detail-description {
+  margin-top: 20px;
+}
+
+.skeleton-detail-comments {
+  margin-top: 20px;
+}
+
+.skeleton-detail-comments-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.skeleton-detail-comment-card {
+  background: white;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
 
 /* Shimmer effect */
 @keyframes shimmer {
@@ -531,11 +579,15 @@ footer {
     grid-row: 1 / 2;    
   }
 
-  .restaurant-description {
+  .restaurant-description, .skeleton-detail-description {
     grid-column: 1 / 3; 
     grid-row: 2 / 3;    
   }
   .comment-section{
+    grid-column: 1 / 3; 
+    grid-row: 3 / 3; 
+  }
+  .skeleton-detail-comments {
     grid-column: 1 / 3; 
     grid-row: 3 / 3; 
   }
