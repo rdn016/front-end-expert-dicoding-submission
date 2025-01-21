@@ -4,15 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Owan Culinary</title>
-    <script
-      src="https://kit.fontawesome.com/a67c0f2bc6.js"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://kit.fontawesome.com/a67c0f2bc6.js"></script>
     <link rel="manifest" href="./app.webmanifest" />
     <link rel="icon" href="../public/icon-128x128.png" type="image/x-icon" />
   </head>
-  <body>
-    <a href="#list" id="skip-button" tabindex="0">skip to content</a>
+  <body style="min-height: 1000px;">
+    <a href="#mainContent" id="skip-button" tabindex="0">skip to content</a>
     <header>
       <nav>
         <h1 id="judul" tabindex="0"><span id="span">Owan</span> Culinary</h1>
@@ -28,8 +25,20 @@
     <!--responsive nav-->
     <input type="checkbox" id="check" class="navigation-bar" />
     <label for="check">
-      <i class="fas fa-bars" id="btn" role="button" tabindex="0"></i>
-      <i class="fa-solid fa-xmark" id="cancel" role="button" tabindex="0"></i>
+      <i
+        class="fas fa-bars"
+        id="btn"
+        role="button"
+        tabindex="0"
+        aria-hidden="false"
+      ></i>
+      <i
+        class="fa-solid fa-xmark"
+        id="cancel"
+        role="button"
+        tabindex="0"
+        aria-hidden="false"
+      ></i>
     </label>
     <div class="sidebar">
       <ul id="side">
@@ -60,22 +69,25 @@
     <br /><br />
 
     <footer id="footer">
-      <!-- <div class="about">
-
+      <div class="about">
+        <h2 style="font-weight: bolder" class="judul">
+          <span id="span">Owan</span> Culinary
+        </h2>
         <p class="about-desc">
-          Owan Culinary adalah layanan katalog restoran enak dan murah
+          Owan Culinary telah berdiri sejak 2024 lebih tepatnya kemaren. Daripada
+          itu mending makan disini deh
         </p>
-      </div> -->
-      <p class="judul">
-        copyright © 2024 - <span id="span">Owan</span> Culinary
-      </p>
-      <!-- <div class="contact">
+      </div>
+      <div class="contact">
         <h2 class="contact-header">Contact Us</h2>
         <ul class="contact-list">
-          <li>support@owanrestaurant.id</li>
-          <li>021 - 4434 - 5378</li>
+          <li>support@owanculinary.id</li>
+          <li>
+            Jl. Plemburan Gg. Mulia IV, Sedan, Sariharjo, Kec. Ngaglik,
+            Kabupaten Sleman, Daerah Istimewa Yogyakarta 55581
+          </li>
         </ul>
-      </div> -->
+      </div>
     </footer>
   </body>
 </html>

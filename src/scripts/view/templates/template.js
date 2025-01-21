@@ -148,6 +148,12 @@ const createSkeletonRestaurantDetail = () => {
   `;
 };
 
+const noLikedRestaurants = () => {
+  return `
+    <h1 id="no-liked-restaurants">Kamu belum menyukai restoran</h1>
+  `;
+};
+
 
 export {
   createRestaurantDetail,
@@ -155,5 +161,6 @@ export {
   createLikeButtonTemplate,
   createLikedButtonTemplate,
   skeletonRestaurantList,
-  createSkeletonRestaurantDetail
+  createSkeletonRestaurantDetail,
+  noLikedRestaurants
 };

@@ -1,36 +1,46 @@
+/* General Styles */
 * {
   margin: 0;
-  font-family: "Open Sans", sans-serif;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
   text-decoration: none;
   list-style: none;
   scroll-behavior: smooth;
-  box-sizing: border-box;
+  font-display: optional;
 }
+
 #mainContent {
   min-height: 400px;
 }
-a, button, label #btn, label #cancel {
+
+a,
+button,
+label #btn,
+label #cancel {
   min-width: 44px;
   min-height: 44px;
 }
-/*sidebar*/
+
+/* Sidebar */
 .sidebar {
   position: fixed;
   left: -250px;
   width: 250px;
-  background-color: #ffffff;
   height: 100%;
+  background-color: #ffffff;
   transition: all 0.5s ease;
   z-index: 100;
   text-align: center;
 }
+
 .sidebar h1 {
   font-size: 22px;
   color: #fff;
   justify-content: center;
   line-height: 70px;
 }
+
 .sidebar #side {
   height: 100%;
   margin-top: 5rem;
@@ -38,23 +48,21 @@ a, button, label #btn, label #cancel {
   line-height: 65px;
   color: black;
   font-size: 20px;
-  box-sizing: border-box;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  display: block;
   transition: 0.4s;
-  text-decoration: none;
 }
+
 .sidebar #side li {
   position: relative;
   font-size: 20px;
   padding: 10px 0;
 }
+
 .sidebar #side li a {
   color: black;
-  min-width: 44px;
-  min-height: 44px;
   display: block;
 }
+
 .sidebar #side li a::after {
   content: "";
   position: absolute;
@@ -66,18 +74,22 @@ a, button, label #btn, label #cancel {
   background-color: #000000;
   transition: width 0.3s ease;
 }
+
 .sidebar #side li:hover a::after {
   width: 5rem;
 }
+
 #check {
   display: none;
 }
+
 label #btn,
 label #cancel {
   position: fixed;
   cursor: pointer;
   z-index: 110;
 }
+
 label #btn {
   left: 25px;
   top: 0.7rem;
@@ -85,8 +97,6 @@ label #btn {
   color: black;
   padding: 5px 10px;
   transition: all 0.5s;
-  position: fixed;
-  z-index: 100;
 }
 
 label #cancel {
@@ -97,39 +107,49 @@ label #cancel {
   padding: 4px 9px;
   transition: all 0.5s ease;
 }
+
 #check:checked ~ .sidebar {
   left: 0;
 }
+
 #check:checked ~ label #btn {
   left: 250px;
   opacity: 0;
   pointer-events: none;
 }
+
 #check:checked ~ label #cancel {
   left: 195px;
 }
+
 #btn {
   display: none;
 }
+
 #judul {
   font-weight: bolder;
 }
-/*responsive sidebar and tulisan front end dev*/
+
+/* Responsive Sidebar */
 @media (max-width: 575px) {
   #check:checked ~ .sidebar {
     left: 0;
   }
+
   #check:checked ~ label #btn {
     left: 250px;
     opacity: 0;
     pointer-events: none;
   }
+
   #check:checked ~ label #cancel {
     left: 195px;
   }
+
   #navbar li {
     display: none;
   }
+
   #nav-btn {
     display: none;
   }
@@ -139,35 +159,40 @@ label #cancel {
     right: 10%;
     font-size: 18px;
   }
-  label #btn, label #cancel {
+
+  label #btn,
+  label #cancel {
     display: block;
   }
+
   .contact-header,
-  .service,
   .judul {
     font-size: 13px;
   }
+
   .sidebar #side li a {
     height: 44px;
   }
 }
 
-/* header and navbar*/
-
+/* Header and Navbar */
 nav ul li {
   list-style: none;
   margin: 5px 20px 0 20px;
   position: relative;
 }
+
 #navbar {
   display: flex;
 }
+
 header {
   width: 100%;
   position: fixed;
   background-color: white;
   z-index: 99;
 }
+
 nav {
   top: 0;
   right: 0;
@@ -178,7 +203,6 @@ nav {
   margin: auto;
   width: 90%;
   height: 55px;
-  line-height: normal;
   padding-left: 18px;
 }
 
@@ -199,8 +223,6 @@ nav ul li:hover::after {
 
 nav ul li a {
   color: var(--header);
-  min-width: 44px;
-  min-height: 44px;
   display: block;
   line-height: 44px;
 }
@@ -209,16 +231,18 @@ span {
   color: #fa0;
 }
 
-/* landing page */
+/* Landing Page */
 .moto {
   padding-top: 20%;
   color: white;
   font-size: 20px;
 }
+
 .moto-container {
   width: 80%;
   margin: auto;
 }
+
 .hero {
   width: 100%;
   height: 75vh;
@@ -233,25 +257,30 @@ span {
     min-width: 1000px;
   }
 }
+
 #moto {
   background-color: rgba(255, 170, 0, 0.8);
   color: white;
   padding: 0 30px 0 3px;
 }
+
 @media screen and (max-width: 1025px) {
   .moto {
     font-size: 15px;
     padding-top: 5rem;
   }
+
   .hero {
     height: 40vh;
   }
 }
+
 @media screen and (max-width: 500px) {
   .moto {
     font-size: 12px;
   }
 }
+
 @media screen and (max-width: 780px) {
   .hero {
     background: url(../public/hero/hero-image-small.jpg) no-repeat;
@@ -259,23 +288,26 @@ span {
   }
 }
 
-/* list */
+/* List */
 #list {
   color: #fa0;
   font-size: 25px;
   padding-top: 5rem;
   margin-left: 6rem;
 }
+
 .list {
   width: 85%;
   margin: auto;
 }
+
 .list-cards {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(auto-fill, minmax(150px, 240px));
   place-content: center;
 }
+
 .card {
   width: 240px;
   padding: 20px;
@@ -288,21 +320,22 @@ span {
   justify-content: space-between;
   margin-bottom: 8px;
 }
+
 .card-title a {
   font-size: 18px;
   color: #34364a;
   font-weight: 700;
   display: block;
 }
+
 .card-head p {
   font-weight: 600;
   color: rgb(253, 198, 88);
 }
+
 .card img {
   width: 200px;
   height: 150px;
-  position: relative;
-  z-index: 1;
   margin-bottom: 6px;
 }
 
@@ -310,13 +343,13 @@ span {
   .card {
     margin-top: 10px;
   }
+
   #list {
     margin-left: auto;
   }
 }
-/* skeleton ui */
 
-/* main page and liked skeleton */
+/* Skeleton UI */
 .skeleton {
   width: 240px;
   padding: 20px;
@@ -346,8 +379,6 @@ span {
 .skeleton-image {
   width: 200px;
   height: 150px;
-  position: relative;
-  z-index: 1;
   margin-bottom: 6px;
   animation: shimmer 1.5s infinite linear;
 }
@@ -356,13 +387,13 @@ span {
   .skeleton {
     margin-top: 10px;
   }
+
   #list {
     margin-left: auto;
   }
 }
 
-/* detail and comment skeleton */
-
+/* Detail and Comment Skeleton */
 .skeleton-detail-line {
   width: 100%;
   height: 24px;
@@ -371,6 +402,7 @@ span {
   animation: shimmer 1.5s infinite linear;
   margin-bottom: 8px;
 }
+
 .skeleton-detail-title {
   width: 45%;
   height: 28px;
@@ -415,16 +447,10 @@ span {
   border-radius: 8px;
 }
 
-
-/* Shimmer effect */
+/* Shimmer Effect */
 @keyframes shimmer {
   0% {
-    background: linear-gradient(
-      90deg,
-      #e0e0e0 25%,
-      #f0f0f0 50%,
-      #e0e0e0 75%
-    );
+    background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
     background-size: 200% 100%;
     background-position: -100% 0;
   }
@@ -433,20 +459,70 @@ span {
   }
 }
 
-
-/* footer */
-footer {
-  width: 100%;
-  display: block;
-  text-align: center;
-  padding: 20px 0 20px 0;
-  position: relative;
-  bottom: 0;
-  font-size: 1rem;
-  min-height: 40px;
+/* Footer */
+:root {
+  --header: #34364a;
+  --child: #b0b0b0;
 }
 
-/* submission */
+footer {
+  display: flex;
+  justify-content: space-around;
+  max-width: 80vw;
+  margin: auto;
+  min-height: 140px;
+}
+
+.contact {
+  padding-right: 0;
+  width: 32%;
+}
+
+.about {
+  width: 30%;
+}
+
+.about-desc,
+.contact-list li,
+.footer p {
+  color: var(--child);
+}
+
+.about-desc,
+.contact-list li {
+  margin: 10px 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+@media screen and (max-width: 1024px) {
+  .about-desc,
+  .service-list li a,
+  .contact-list li,
+  .footer p {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about,
+  .contact {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Submission */
 #skip-button {
   position: absolute;
   top: -50px;
@@ -457,18 +533,19 @@ footer {
   padding: 5px;
   z-index: 99999;
 }
+
 #skip-button:focus {
   top: 0;
 }
 
-/* detail page */
+/* Detail Page */
 .detail {
   min-width: 65%;
   padding: 70px 20px 20px 20px;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr; 
-  grid-template-rows: auto auto auto; 
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
   gap: 20px;
 }
 
@@ -507,20 +584,20 @@ footer {
   margin: 2px 0;
 }
 
-.restaurant-description p{
+.restaurant-description p {
   font-size: 14px;
 }
+
 .restaurant-description {
   height: fit-content;
 }
-/* comment section */
-/* styles.css */
+
+/* Comment Section */
 :root {
   --text-color: #333333;
-  --accent-color: #ffd966; /* Kuning lebih pekat */
+  --accent-color: #ffd966;
   --border-color: #f0e1c2;
 }
-
 
 .comment-section {
   padding: 16px;
@@ -563,37 +640,40 @@ footer {
 
 @media screen and (min-width: 610px) {
   .detail {
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr .3fr; 
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 0.3fr;
     width: 70%;
     padding-top: 150px;
   }
 
   .detail-main {
     grid-column: 1 / 2;
-    grid-row: 1 / 2;    
+    grid-row: 1 / 2;
   }
 
   .restaurant-information {
-    grid-column: 2 / 3; 
-    grid-row: 1 / 2;    
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
   }
 
-  .restaurant-description, .skeleton-detail-description {
-    grid-column: 1 / 3; 
-    grid-row: 2 / 3;    
+  .restaurant-description,
+  .skeleton-detail-description {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
   }
-  .comment-section{
-    grid-column: 1 / 3; 
-    grid-row: 3 / 3; 
+
+  .comment-section {
+    grid-column: 1 / 3;
+    grid-row: 3 / 3;
   }
+
   .skeleton-detail-comments {
-    grid-column: 1 / 3; 
-    grid-row: 3 / 3; 
+    grid-column: 1 / 3;
+    grid-row: 3 / 3;
   }
 
   .detail img {
-    max-width: 400px; 
+    max-width: 400px;
   }
 
   .detail-main h1 {
@@ -605,24 +685,31 @@ footer {
   }
 }
 
-
-/* like button */
-
+/* Like Button */
 .like {
   width: 55px;
   height: 55px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   background-color: #ffd966;
   position: fixed;
   bottom: 16px;
   right: 16px;
   border-radius: 50%;
   border: 0;
-  
   font-size: 18px;
   color: white;
   cursor: pointer;
+}
+/* empty like idb */
+#list-cards.no-liked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 125px;
+}
+#no-liked-restaurants {
+  position: relative;
+  font-size: 18px;
 }
