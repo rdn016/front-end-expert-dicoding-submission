@@ -1,5 +1,5 @@
 import { createRestaurantList, skeletonRestaurantList, noLikedRestaurants } from '../templates/template';
-import favoriteRestaurantidb from '../../../global/liked-restaurant';
+import favoriteRestaurantidb from '../../../api/liked-restaurant';
 import lazyLoadElements from '../../utils/lazy-load-element';
 
 const likedPage = {

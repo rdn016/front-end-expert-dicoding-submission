@@ -1,8 +1,9 @@
-import api from '../../../global/restaurant-api';
+import { getRestaurantDetail } from '../../../api/restaurant-api';
 import { createRestaurantDetail, createSkeletonRestaurantDetail } from '../templates/template';
 import urlParser from '../../routes/url-parser';
 import likeButtonInitiator from '../../utils/like-btn-initiator';
-import favoriteRestaurantidb from '../../../global/liked-restaurant';
+import favoriteRestaurantidb from '../../../api/liked-restaurant';
+import  submitHandler  from '../../utils/form';
 
 const restaurantDetail = {
   async render() {
@@ -16,7 +17,7 @@ const restaurantDetail = {
   async afterRender() {
     const url = urlParser.parseActiveWithoutCombiner();
 
-    const restaurantData = await api.getRestaurantDetail(url.id);
+    const restaurantData = await getRestaurantDetail(url.id);
     const restaurants = restaurantData.restaurant;
 
     const container = document.querySelector('.detail');
@@ -24,7 +25,21 @@ const restaurantDetail = {
     setTimeout(() => {
       container.innerHTML = '';
       container.innerHTML = createRestaurantDetail(restaurants);
+
+      //limit karakter jadi 110 di bagian review
+      const reviews = document.querySelectorAll('.review');
+      const maxLength = 110;
+      reviews.forEach((review) => {
+        const TruncatedReview = review.textContent.slice(0, maxLength);
+        review.innerHTML = TruncatedReview;
+      });
+
+      const form = document.querySelector('form');
+      form.addEventListener('submit', (event) => event.preventDefault());
+
+      submitHandler(url.id);
     }, 150);
+
     const likeButtonContainer = document.querySelector('#likeButtonContainer');
     if (likeButtonContainer) {
       likeButtonInitiator.init({

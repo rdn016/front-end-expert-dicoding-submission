@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { event } from 'codeceptjs';
-import favoriteRestaurantidb from '../src/global/liked-restaurant';
+import favoriteRestaurantidb from '../src/api/liked-restaurant';
 import * as testFactories from './helper/testFactories';
 
 describe('unlike a restaurant', () => {

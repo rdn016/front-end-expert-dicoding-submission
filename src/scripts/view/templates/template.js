@@ -36,6 +36,34 @@ const createCustomerReviews = (reviews) => {
     .join('');
 };
 
+
+const createNewReview = (review) => {
+  return `
+      <div class="name">${review.name}</div>
+      <div class="date">${review.date}</div>
+      <div class="review">${review.review}</div>
+  `;
+};
+
+const createReviewForm = () => {
+  return `
+    <div class="review-form">
+      <h2>Submit Your Review</h2>
+      <form id="reviewForm">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required placeholder="Your name"/>
+        </div>
+        <div class="form-group">
+          <label for="review">Review:</label>
+          <textarea id="review" name="review" rows="4" required maxlength="110" placeholder="Your review (max 110 length)"></textarea>
+        </div>
+        <button type="submit" id="submit-btn">Submit</button>
+      </form>
+    </div>
+  `;
+};
+
 const createRestaurantDetail = (restaurant) => {
   return `
 
@@ -76,6 +104,7 @@ const createRestaurantDetail = (restaurant) => {
         <div id="comments-container" class="comments-container">
           ${createCustomerReviews(restaurant.customerReviews)}
         </div>
+        ${createReviewForm()}
       </div>
 
   `;
@@ -162,5 +191,6 @@ export {
   createLikedButtonTemplate,
   skeletonRestaurantList,
   createSkeletonRestaurantDetail,
-  noLikedRestaurants
+  noLikedRestaurants,
+  createNewReview
 };

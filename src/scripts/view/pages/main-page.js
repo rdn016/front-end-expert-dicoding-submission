@@ -1,5 +1,4 @@
-import api from '../../../global/restaurant-api.js';
-// import getData from '../../../data/data.js'
+import { getRestaurants } from '../../../api/restaurant-api.js';
 import { skeletonRestaurantList } from '../templates/template.js';
 import lazyLoadElements from '../../utils/lazy-load-element.js';
 import loadLazySizes from '../../utils/load-lazysizes.js';
@@ -22,14 +21,13 @@ const restaurantList = {
 
   async afterRender() {
     const restaurantContainer = document.querySelector('#list-cards');
-    const restaurantData = await api.getRestaurants();
-    // const restaurantData = await getData();
-    const restaurants = restaurantData.restaurants;
     // Render skeletons
-    for (let i = 0; i < restaurants.length; i++) {
+    for (let i = 0; i < 20; i++) {
       restaurantContainer.innerHTML += skeletonRestaurantList();
     }
-
+    const restaurantData = await getRestaurants();
+    // const restaurantData = await getData();
+    const restaurants = restaurantData.restaurants;
     const loadMoreRestaurants = () => {
       for (let i = 5; i < restaurants.length; i++) {
         restaurantContainer.innerHTML += loadLazySizes(restaurants[i]);
