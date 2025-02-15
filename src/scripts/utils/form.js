@@ -12,13 +12,12 @@ export default function submitHandler(reviewId) {
 
     if (name && review) {
       const newReview = {
-        id: reviewId,
         name: name,
         review: review,
       };
       // fetch ulang setelah post review
       try {
-        const customerReviews = await postReview(newReview);
+        const customerReviews = await postReview(newReview, reviewId);
         if (customerReviews){
           await getRestaurantDetail(reviewId);
           const container = document.querySelector('.comments-container');

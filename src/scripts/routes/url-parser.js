@@ -2,12 +2,20 @@ const urlParser = {
   parseActiveUrlWithCombiner(){
     const url = window.location.hash.slice(1).toLowerCase();
     const splittedUrl = this._urlSplitter(url);
+    this._scrollToTop();
     return this._urlCombiner(splittedUrl);
   },
 
   parseActiveWithoutCombiner(){
     const url = window.location.hash.slice(1).toLowerCase();
+    this._scrollToTop();
     return this._urlSplitter(url);
+  },
+  _scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Untuk efek scroll yang halus
+    });
   },
 
   _urlSplitter(url){
