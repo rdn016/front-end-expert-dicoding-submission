@@ -1,7 +1,7 @@
 export const getRestaurants = async () => {
   try {
-    // const response = await fetch('https://restaurant-api.dicoding.dev/list');
-    const response = await fetch('http://localhost:3100/list');
+    const response = await fetch('https://restaurant-api.dicoding.dev/list');
+    // const response = await fetch('http://localhost:3100/list');
     const responseJson = await response.json();
     return responseJson;
   } catch (error) {
@@ -12,8 +12,8 @@ export const getRestaurants = async () => {
 
 export const getRestaurantDetail = async (id) => {
   try {
-    // const response = await fetch(`https://restaurant-api.dicoding.dev/detail/${id}`);
-    const response = await fetch(`http://localhost:3100/detail/${id}`);
+    const response = await fetch(`https://restaurant-api.dicoding.dev/detail/${id}`);
+    // const response = await fetch(`http://localhost:3100/detail/${id}`);
     const responseJson = await response.json();
     return responseJson;
   } catch (error) {
