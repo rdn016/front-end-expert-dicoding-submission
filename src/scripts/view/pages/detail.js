@@ -20,7 +20,7 @@ const restaurantDetail = {
     const url = urlParser.parseActiveWithoutCombiner();
 
     const restaurantData = await getRestaurantDetail(url.id);
-    const restaurants = restaurantData;
+    const restaurants = restaurantData.restaurant;
 
     const container = document.querySelector('.detail');
     container.innerHTML = createSkeletonRestaurantDetail();

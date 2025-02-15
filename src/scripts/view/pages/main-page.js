@@ -28,10 +28,12 @@ const restaurantList = {
       restaurantContainer.innerHTML += skeletonRestaurantList();
     }
     const restaurants = await getRestaurants();
-    // const restaurantData = await getData();
+    const restaurantData = restaurants.restaurants;
+    console.log(restaurantData);
+
     const loadMoreRestaurants = () => {
-      for (let i = 5; i < restaurants.length; i++) {
-        restaurantContainer.innerHTML += loadLazySizes(restaurants[i]);
+      for (let i = 5; i < restaurantData.length; i++) {
+        restaurantContainer.innerHTML += loadLazySizes(restaurantData[i]);
       }
       lazyLoadElements();
     };
