@@ -8,7 +8,9 @@ import  submitHandler  from '../../utils/form';
 const restaurantDetail = {
   async render() {
     const hero = document.querySelector('.hero');
+    const about = document.querySelector('.about-section');
     hero.style.display ='none';
+    about.style.display ='none';
     return `  
     <div class="detail"></div>
     <div id="likeButtonContainer"></div>
@@ -18,7 +20,7 @@ const restaurantDetail = {
     const url = urlParser.parseActiveWithoutCombiner();
 
     const restaurantData = await getRestaurantDetail(url.id);
-    const restaurants = restaurantData.restaurant;
+    const restaurants = restaurantData;
 
     const container = document.querySelector('.detail');
     container.innerHTML = createSkeletonRestaurantDetail();

@@ -5,7 +5,9 @@ import lazyLoadElements from '../../utils/lazy-load-element';
 const likedPage = {
   async render() {
     const hero = document.querySelector('.hero');
-    hero.style.display = 'block';
+    const about = document.querySelector('.about-section');
+    hero.style.display ='none';
+    about.style.display ='none';
     return `
     <div class="list liked">
       <h1 id="list">Liked Restaurant</h1>

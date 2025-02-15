@@ -6,7 +6,9 @@ import loadLazySizes from '../../utils/load-lazysizes.js';
 const restaurantList = {
   async render() {
     const hero = document.querySelector('.hero');
-    hero.style.display = 'block';
+    const about = document.querySelector('.about-section');
+    hero.style.display ='block';
+    about.style.display ='flex';
 
     return `
     <div class="list">
@@ -25,9 +27,8 @@ const restaurantList = {
     for (let i = 0; i < 20; i++) {
       restaurantContainer.innerHTML += skeletonRestaurantList();
     }
-    const restaurantData = await getRestaurants();
+    const restaurants = await getRestaurants();
     // const restaurantData = await getData();
-    const restaurants = restaurantData.restaurants;
     const loadMoreRestaurants = () => {
       for (let i = 5; i < restaurants.length; i++) {
         restaurantContainer.innerHTML += loadLazySizes(restaurants[i]);
