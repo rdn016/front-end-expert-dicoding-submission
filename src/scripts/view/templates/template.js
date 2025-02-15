@@ -1,7 +1,4 @@
-// import loadLazySizes from '../../utils/load-lazysizes';
-
 const createRestaurantList = (restaurant) => {
-  // loadLazySizes();
   return `
     <div class="card lazyload" tabindex="0" id="${restaurant.id}">
       <div class="card-head lazyload">
