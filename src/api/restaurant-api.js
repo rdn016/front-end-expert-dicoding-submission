@@ -1,4 +1,4 @@
-const baseUrl = 'https://owan-culinary.vercel.app/api';
+const baseUrl = 'http://owan-culinary.vercel.app/api';
 
 export const getRestaurants = async () => {
   try {
