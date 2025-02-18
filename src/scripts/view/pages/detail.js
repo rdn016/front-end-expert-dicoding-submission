@@ -17,11 +17,11 @@ const restaurantDetail = {
   `;
   },
   async afterRender() {
+    const container = document.querySelector('.detail');
     const url = urlParser.parseActiveWithoutCombiner();
 
     const restaurants = await getRestaurantDetail(url.id);;
 
-    const container = document.querySelector('.detail');
     container.innerHTML = createSkeletonRestaurantDetail();
     setTimeout(() => {
       container.innerHTML = '';
