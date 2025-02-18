@@ -19,8 +19,7 @@ const restaurantDetail = {
   async afterRender() {
     const url = urlParser.parseActiveWithoutCombiner();
 
-    const restaurantData = await getRestaurantDetail(url.id);
-    const restaurants = restaurantData.restaurant;
+    const restaurants = await getRestaurantDetail(url.id);;
 
     const container = document.querySelector('.detail');
     container.innerHTML = createSkeletonRestaurantDetail();
