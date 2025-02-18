@@ -3,37 +3,17 @@ const urlParser = {
     const url = window.location.hash.slice(1).toLowerCase();
 
     if (url.includes('about-us')) {
-      // Cek apakah elemen about-us terlihat
-      const aboutSection = document.querySelector('#about-us');
-      if (!aboutSection || getComputedStyle(aboutSection).display === 'none') {
-        // Redirect ke halaman utama dengan flag untuk scroll
-        window.location.hash = '/';
-        sessionStorage.setItem('scrollToAbout', 'true');
-        return;
-      }
-
-      // Jika elemen terlihat, scroll ke about-us
-      setTimeout(() => {
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-      return;
-    }
-
-    const splittedUrl = this._urlSplitter(url);
-    this._scrollToTop();
-
-    // Cek flag scroll setelah redirect
-    if (url === '' && sessionStorage.getItem('scrollToAbout')) {
-      sessionStorage.removeItem('scrollToAbout');
       setTimeout(() => {
         const aboutSection = document.querySelector('#about-us');
         if (aboutSection) {
           aboutSection.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 300);
+      }, 100);
+      return '/';
     }
+
+    const splittedUrl = this._urlSplitter(url);
+    this._scrollToTop();
 
     return this._urlCombiner(splittedUrl);
   },
