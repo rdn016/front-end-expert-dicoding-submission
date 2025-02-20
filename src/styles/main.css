@@ -255,7 +255,7 @@ span {
   min-height: 95vh;
   padding-top: 60px;
   position: relative;
-  background: url(../public/hero/hero-image-large.jpg) no-repeat;
+  background: url(../public/hero/hero-image-large.webp) no-repeat;
   background-size: cover;
 }
 
@@ -292,7 +292,7 @@ span {
 
 @media screen and (max-width: 780px) {
   .hero {
-    background: url(../public/hero/hero-image-small.jpg) no-repeat;
+    background: url(../public/hero/hero-image-small.webp) no-repeat;
     background-size: cover;
   }
 }

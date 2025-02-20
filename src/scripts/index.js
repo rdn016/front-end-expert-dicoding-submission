@@ -1,7 +1,6 @@
 import '../styles/main.css';
 import App from './view/app';
 import swRegister from './utils/register-sw';
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const hamburger = document.getElementById('btn');
 const closeBtn = document.getElementById('cancel');
