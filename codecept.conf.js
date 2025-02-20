@@ -9,7 +9,7 @@ setCommonPlugins();
 /** @type {CodeceptJS.MainConfig} */
 exports.config = {
   tests: 'e2e/**/*.test.js',
-  output: 'e2e/output',
+  // output: 'e2e/output', // commented out to disable output
   helpers: {
     Playwright: {
       browser: 'chromium',

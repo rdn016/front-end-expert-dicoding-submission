@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const unlikeRestaurantHelper = async (I) => {
+const e2eHelper = async (I) => {
   I.amOnPage('/');
   I.wait('.card-title a');
 
@@ -14,5 +14,5 @@ const unlikeRestaurantHelper = async (I) => {
 };
 
 module.exports = {
-  unlikeRestaurantHelper,
+  e2eHelper,
 };

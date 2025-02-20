@@ -16,7 +16,7 @@ fs.readdirSync(target).forEach((image) => {
     .toFile(
       path.resolve(
         __dirname,
-        `${destination}/${image.split('.').slice(0, -1).join('.')}-large.jpg`
+        `${destination}/${image.split('.').slice(0, -1).join('.')}-large.webp`
       )
     );
   /* gambar kecil */
@@ -25,7 +25,7 @@ fs.readdirSync(target).forEach((image) => {
     .toFile(
       path.resolve(
         __dirname,
-        `${destination}/${image.split('.').slice(0, -1).join('.')}-small.jpg`
+        `${destination}/${image.split('.').slice(0, -1).join('.')}-small.webp`
       )
     );
 });

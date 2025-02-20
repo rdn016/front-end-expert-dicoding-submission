@@ -1,17 +1,11 @@
 /* eslint-disable no-undef */
-const { unlikeRestaurantHelper } = require('./helpers/helper');
+const { e2eHelper } = require('./helpers/helper');
 
 const assert = require('assert');
 Feature('Like restaurant');
 
 Scenario('Liking a restaurant',  async ({ I }) => {
-  I.amOnPage('/');
-  I.wait('.card-title a');
-
-  const firstRestaurant = locate('.card-title a').first();
-  const firstRestaurantTitle = await I.grabTextFrom(firstRestaurant);
-  I.click(firstRestaurant);
-  I.amOnPage('/#/detail/rqdv5juczeskfw1e867');
+  await e2eHelper(I);
 
   I.seeElement('#likeBtn');
   I.click('#likeBtn');
@@ -25,7 +19,7 @@ Scenario('Liking a restaurant',  async ({ I }) => {
 
 Scenario('unLiking a restaurant', async ({ I }) => {
 
-  await unlikeRestaurantHelper(I);
+  await e2eHelper(I);
 
   I.amOnPage('/#/liked');
   I.wait('.card-title a');
