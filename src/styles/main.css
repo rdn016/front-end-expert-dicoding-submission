@@ -22,8 +22,8 @@ body {
 
 a,
 button,
-label #btn,
-label #cancel {
+ #btn,
+ #cancel {
   min-width: 44px;
   min-height: 44px;
 }
@@ -47,7 +47,7 @@ label #cancel {
   line-height: 70px;
 }
 
-.sidebar #side {
+ #side {
   height: 100%;
   margin-top: 5rem;
   width: 100%;
@@ -58,18 +58,18 @@ label #cancel {
   transition: 0.4s;
 }
 
-.sidebar #side li {
+ #side li {
   position: relative;
   font-size: 20px;
   padding: 10px 0;
 }
 
-.sidebar #side li a {
+ #side li a {
   color: black;
   display: block;
 }
 
-.sidebar #side li a::after {
+ #side li a::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -81,7 +81,7 @@ label #cancel {
   transition: width 0.3s ease;
 }
 
-.sidebar #side li:hover a::after {
+ #side li:hover a::after {
   width: 5rem;
 }
 
@@ -89,14 +89,14 @@ label #cancel {
   display: none;
 }
 
-label #btn,
-label #cancel {
+ #btn,
+ #cancel {
   position: fixed;
   cursor: pointer;
   z-index: 110;
 }
 
-label #btn {
+ #btn {
   left: 25px;
   top: 0.7rem;
   font-size: 30px;
@@ -104,8 +104,7 @@ label #btn {
   padding: 5px 10px;
   transition: all 0.5s;
 }
-
-label #cancel {
+#cancel {
   left: -195px;
   top: 17px;
   font-size: 30px;
@@ -166,8 +165,8 @@ label #cancel {
     font-size: 18px;
   }
 
-  label #btn,
-  label #cancel {
+ #btn,
+ #cancel {
     display: block;
   }
 
@@ -176,7 +175,7 @@ label #cancel {
     font-size: 13px;
   }
 
-  .sidebar #side li a {
+ #side li a {
     height: 44px;
   }
 }
@@ -737,8 +736,7 @@ footer {
   margin-bottom: 16px;
   color: var(--accent-color);
 }
-
-.review-form .form-group {
+ .form-group {
   margin-bottom: 16px;
 }
 

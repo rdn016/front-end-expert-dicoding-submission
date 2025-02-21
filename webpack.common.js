@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -36,6 +38,11 @@ module.exports = {
         },
       },
     },
+    minimize: true,
+    minimizer: [
+      new CssMinimizerPlugin(), // Minify CSS
+      new TerserPlugin(), // Minify JS
+    ],
   },
   module: {
     rules: [
