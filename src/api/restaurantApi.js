@@ -1,0 +1,143 @@
+// restaurantApi.js
+
+const BASE_URL = "http://localhost:3000/api"; // Ubah ke endpoint backend lo
+
+/**
+ * Mengambil daftar restoran dari API.
+ * @returns {Promise<Object>} JSON response yang berisi list restoran.
+ */
+export const getRestaurants = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}/list`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching restaurants:", error);
+    return null;
+  }
+};
+
+/**
+ * Mengambil detail restoran berdasarkan id.
+ * @param {string} id - ID restoran.
+ * @returns {Promise<Object>} JSON response yang berisi detail restoran.
+ */
+export const getRestaurantDetail = async (id) => {
+  try {
+    const response = await fetch(`${BASE_URL}/detail/${id}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching restaurant detail:", error);
+    return null;
+  }
+};
+
+/**
+ * Mengirim review baru untuk restoran.
+ * Harus terautentikasi, jadi token diambil dari localStorage.
+ * @param {Object} reviewData - Objek review (name, review).
+ * @param {string} id - ID restoran.
+ * @returns {Promise<Object>} JSON response yang berisi list review terupdate.
+ */
+export const postReview = async (reviewData, id) => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    throw new Error("User not authenticated");
+  }
+  try {
+    const response = await fetch(`${BASE_URL}/postReview?id=${id}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`,
+      },
+      body: JSON.stringify(reviewData),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const responseJson = await response.json();
+    return responseJson.customerReviews;
+  } catch (error) {
+    console.error("Error posting review:", error);
+    return null;
+  }
+};
+
+/**
+ * Menyukai restoran (menambah ke daftar liked).
+ * Untuk demo, kita simulasikan dengan localStorage.
+ * @param {Object} restaurant - Objek restoran.
+ * @returns {Promise<Object>}
+ */
+export const putRestaurant = async (restaurant) => {
+  try {
+    let likedRestaurants =
+      JSON.parse(localStorage.getItem("likedRestaurants")) || [];
+    if (!likedRestaurants.find((r) => r.id === restaurant.id)) {
+      likedRestaurants.push(restaurant);
+      localStorage.setItem(
+        "likedRestaurants",
+        JSON.stringify(likedRestaurants)
+      );
+    }
+    return restaurant;
+  } catch (error) {
+    console.error("Error liking restaurant:", error);
+    return null;
+  }
+};
+
+/**
+ * Menghapus restoran dari daftar liked.
+ * @param {string} id - ID restoran.
+ * @returns {Promise<Object>}
+ */
+export const deleteRestaurant = async (id) => {
+  try {
+    let likedRestaurants =
+      JSON.parse(localStorage.getItem("likedRestaurants")) || [];
+    likedRestaurants = likedRestaurants.filter((r) => r.id !== id);
+    localStorage.setItem("likedRestaurants", JSON.stringify(likedRestaurants));
+    return { success: true };
+  } catch (error) {
+    console.error("Error unliking restaurant:", error);
+    return null;
+  }
+};
+
+/**
+ * Mengambil restoran liked berdasarkan id.
+ * @param {string} id - ID restoran.
+ * @returns {Promise<Object>}
+ */
+export const getLikedRestaurant = async (id) => {
+  try {
+    let likedRestaurants =
+      JSON.parse(localStorage.getItem("likedRestaurants")) || [];
+    return likedRestaurants.find((r) => r.id === id) || null;
+  } catch (error) {
+    console.error("Error getting liked restaurant:", error);
+    return null;
+  }
+};
+
+/**
+ * Mengambil semua restoran yang disukai.
+ * @returns {Promise<Array>} Array restoran liked.
+ */
+export const getAllLikedRestaurants = async () => {
+  try {
+    let likedRestaurants =
+      JSON.parse(localStorage.getItem("likedRestaurants")) || [];
+    return likedRestaurants;
+  } catch (error) {
+    console.error("Error getting all liked restaurants:", error);
+    return [];
+  }
+};
