@@ -1,6 +1,5 @@
-// pages/DetailPage.jsx
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CommentCard from "../components/comment/ReviewCard";
@@ -14,7 +13,6 @@ import { toast } from "react-toastify";
  */
 const DetailPage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [restaurant, setRestaurant] = useState(null);
   const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
@@ -22,12 +20,20 @@ const DetailPage = () => {
   // Fetch detail restoran saat komponen dimount
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getRestaurantDetail(id);
-      if (data) {
-        setRestaurant(data);
-        setReviews(data.customerReviews || []);
+      try {
+        const data = await getRestaurantDetail(id);
+        // Karena API response-nya berbentuk { restaurant: { ... } }
+        if (data && data.restaurant) {
+          setRestaurant(data.restaurant);
+          setReviews(data.restaurant.customerReviews || []);
+        } else {
+          toast.error("Restaurant not found.");
+        }
+      } catch (error) {
+        toast.error("Failed to fetch restaurant details.");
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     };
     fetchData();
   }, [id]);
@@ -44,18 +50,21 @@ const DetailPage = () => {
 
     if (!localStorage.getItem("token")) {
       toast.error("Kamu harus login dulu ya!");
-      navigate("/login");
       return;
     }
 
     if (name && review) {
-      const reviewData = { name, review };
-      const updatedReviews = await postReview(reviewData, id);
-      if (updatedReviews) {
-        setReviews(updatedReviews);
-        form.reset();
-      } else {
-        toast.error("Gagal menambahkan review");
+      try {
+        const reviewData = { name, review };
+        const updatedReviews = await postReview(reviewData, id);
+        if (updatedReviews) {
+          setReviews(updatedReviews);
+          form.reset();
+        } else {
+          toast.error("Gagal menambahkan review");
+        }
+      } catch (error) {
+        toast.error("Failed to submit review.");
       }
     }
   };
@@ -90,7 +99,7 @@ const DetailPage = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="detail">
         <div className="detail-main">
           <h1>
             {name} <span>{rating} ★</span>
@@ -109,9 +118,15 @@ const DetailPage = () => {
           <div className="restaurant-information-menu">
             <h3 className="restaurant-information-menu-header">Menu</h3>
             <h3>Food</h3>
-            <p>{menus.foods.map((food) => food.name).join(", ")}</p>
+            <p>
+              {menus?.foods?.map((food) => food.name).join(", ") ||
+                "No food available"}
+            </p>
             <h3>Drink</h3>
-            <p>{menus.drinks.map((drink) => drink.name).join(", ")}</p>
+            <p>
+              {menus?.drinks?.map((drink) => drink.name).join(", ") ||
+                "No drinks available"}
+            </p>
           </div>
         </div>
         <div className="restaurant-description">

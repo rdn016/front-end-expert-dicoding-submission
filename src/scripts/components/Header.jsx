@@ -1,24 +1,51 @@
-// components/Header.jsx
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 
 /**
  * Header - Navbar utama dengan opsi login/logout.
+ * Di desktop, tampil seperti biasa sesuai styling sebelumnya.
+ * Di mobile, navbar disembunyikan dan ditampilkan via off-canvas menu.
  */
 const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const mobileMenuRef = useRef(null);
 
-  /**
-   * Handle logout dengan hapus token dari localStorage.
-   */
   const handleLogout = () => {
     localStorage.removeItem("token");
     toast.info("Kamu sudah logout.");
     navigate("/");
   };
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  // Handle klik di luar menu untuk menutup off-canvas
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        !event.target.classList.contains("mobile-menu-icon")
+      ) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header>
@@ -26,7 +53,8 @@ const Header = () => {
         <h1 id="judul" tabIndex="0">
           <span id="span">Owan</span> Culinary
         </h1>
-        <ul id="navbar" tabIndex="0">
+        {/* Desktop Navbar */}
+        <ul id="navbar" tabIndex="0" className="desktop-nav">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -37,7 +65,6 @@ const Header = () => {
             <Link to="/liked">Liked Restaurant</Link>
           </li>
           <li>
-            {/* Tombol ikon user */}
             <button
               onClick={() => setShowUserMenu(!showUserMenu)}
               className="user-icon"
@@ -65,7 +92,62 @@ const Header = () => {
             )}
           </li>
         </ul>
+
+        {/* Mobile Menu Icon */}
+        <div className="mobile-menu-icon" onClick={toggleMobileMenu}>
+          <i className={mobileMenuOpen ? "fa fa-times" : "fa fa-bars"}></i>
+        </div>
       </nav>
+
+      {/* Off-Canvas Mobile Navbar */}
+      <div
+        ref={mobileMenuRef}
+        className={`mobile-nav ${mobileMenuOpen ? "open" : ""}`}
+      >
+        <ul>
+          <li>
+            <Link to="/" onClick={toggleMobileMenu}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" onClick={toggleMobileMenu}>
+              About Us
+            </Link>
+          </li>
+          <li>
+            <Link to="/liked" onClick={toggleMobileMenu}>
+              Liked Restaurant
+            </Link>
+          </li>
+          <li>
+            {token ? (
+              <button
+                onClick={() => {
+                  toggleMobileMenu();
+                  handleLogout();
+                }}
+                className="user-menu-btn"
+              >
+                Logout <i className="fa fa-sign-out"></i>
+              </button>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login" onClick={toggleMobileMenu}>
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/register" onClick={toggleMobileMenu}>
+                    Sign Up
+                  </Link>
+                </li>
+              </>
+            )}
+          </li>
+        </ul>
+      </div>
     </header>
   );
 };

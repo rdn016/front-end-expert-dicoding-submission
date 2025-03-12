@@ -21,7 +21,7 @@ const About = () => {
         </div>
         <div className="about-image-section">
           <img
-            src="../../public/logo/logo.png"
+            src="/logo/logo.png"
             alt="Placeholder image representing Owan Culinary"
           />
         </div>
