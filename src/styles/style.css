@@ -16,9 +16,6 @@ body {
   min-height: 100%;
   flex-direction: column;
 }
-#mainContent {
-  flex: 1 0 auto;
-}
 
 a,
 button,
@@ -27,170 +24,7 @@ button,
   min-width: 44px;
   min-height: 44px;
 }
-
-/* Sidebar */
-.sidebar {
-  position: fixed;
-  left: -250px;
-  width: 250px;
-  height: 100%;
-  background-color: #ffffff;
-  transition: all 0.5s ease;
-  z-index: 100;
-  text-align: center;
-}
-
-.sidebar h1 {
-  font-size: 22px;
-  color: #fff;
-  justify-content: center;
-  line-height: 70px;
-}
-
- #side {
-  height: 100%;
-  margin-top: 5rem;
-  width: 100%;
-  line-height: 65px;
-  color: black;
-  font-size: 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  transition: 0.4s;
-}
-
- #side li {
-  position: relative;
-  font-size: 20px;
-  padding: 10px 0;
-}
-
- #side li a {
-  color: black;
-  display: block;
-}
-
- #side li a::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 1.5px;
-  transform: translateX(-50%);
-  background-color: #000000;
-  transition: width 0.3s ease;
-}
-
- #side li:hover a::after {
-  width: 5rem;
-}
-
-#check {
-  display: none;
-}
-
- #btn,
- #cancel {
-  position: fixed;
-  cursor: pointer;
-  z-index: 110;
-}
-
- #btn {
-  left: 25px;
-  top: 0.7rem;
-  font-size: 30px;
-  color: black;
-  padding: 5px 10px;
-  transition: all 0.5s;
-}
-#cancel {
-  left: -195px;
-  top: 17px;
-  font-size: 30px;
-  color: #000000;
-  padding: 4px 9px;
-  transition: all 0.5s ease;
-}
-
-#check:checked ~ .sidebar {
-  left: 0;
-}
-
-#check:checked ~ label #btn {
-  left: 250px;
-  opacity: 0;
-  pointer-events: none;
-}
-
-#check:checked ~ label #cancel {
-  left: 195px;
-}
-
-#btn {
-  display: none;
-}
-
-#judul {
-  font-weight: bolder;
-}
-
-/* Responsive Sidebar */
-@media (max-width: 575px) {
-  #check:checked ~ .sidebar {
-    left: 0;
-  }
-
-  #check:checked ~ label #btn {
-    left: 250px;
-    opacity: 0;
-    pointer-events: none;
-  }
-
-  #check:checked ~ label #cancel {
-    left: 195px;
-  }
-
-  #navbar li {
-    display: none;
-  }
-
-  #nav-btn {
-    display: none;
-  }
-
-  nav #judul {
-    position: absolute;
-    right: 10%;
-    font-size: 18px;
-  }
-
- #btn,
- #cancel {
-    display: block;
-  }
-
-  .contact-header,
-  .judul {
-    font-size: 13px;
-  }
-
- #side li a {
-    height: 44px;
-  }
-}
-
-/* Header and Navbar */
-nav ul li {
-  list-style: none;
-  margin: 5px 20px 0 20px;
-  position: relative;
-}
-
-#navbar {
-  display: flex;
-}
-
+/* ===== Desktop Header & Navbar (tetap sama) ===== */
 header {
   width: 100%;
   position: fixed;
@@ -199,19 +33,25 @@ header {
 }
 
 nav {
-  top: 0;
-  right: 0;
-  align-items: center;
   justify-content: space-between;
   transition: all 0.5s ease;
   display: flex;
   margin: auto;
-  width: 90%;
-  height: 55px;
-  padding-left: 18px;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0 2rem;
 }
 
-nav ul li::after {
+nav ul li a {
+  margin: 5px 20px 0 20px;
+  position: relative;
+  color: var(--header);
+  display: block;
+  line-height: 44px;
+  text-decoration: none;
+}
+
+nav ul li a::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -222,19 +62,92 @@ nav ul li::after {
   width: 0;
 }
 
-nav ul li:hover::after {
+nav ul li a:hover::after {
   width: 100%;
 }
 
-nav ul li a {
-  color: var(--header);
-  display: block;
-  line-height: 44px;
+#judul {
+  font-weight: bolder;
+  font-size: 24px;
 }
 
-span {
+#span {
   color: #fa0;
 }
+
+.user-icon {
+  background-color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  margin-top: 3px;
+}
+
+/* ===== Desktop Navbar ===== */
+.desktop-nav {
+  display: flex;
+}
+
+/* ===== Mobile Menu Icon ===== */
+.mobile-menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+/* ===== Off-Canvas Mobile Navbar ===== */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  padding-top: 60px;
+  z-index: 100;
+  transition: right 0.3s ease-in-out;
+}
+
+.mobile-nav.open {
+  right: 0;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.mobile-nav ul li {
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+.mobile-nav ul li a,
+.mobile-nav ul li button {
+  text-decoration: none;
+  color: black;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* ===== Responsive untuk Mobile ===== */
+@media (max-width: 575px) {
+  /* Sembunyikan desktop nav di mobile */
+  .desktop-nav {
+    display: none;
+  }
+
+  /* Tampilkan mobile menu icon */
+  .mobile-menu-icon {
+    display: block;
+    font-size: 30px;
+  }
+}
+
+
 
 /* Landing Page */
 .moto {
@@ -302,6 +215,7 @@ span {
   font-size: 25px;
   padding-top: 5rem;
   margin-left: 6rem;
+  margin-bottom: 1rem;
 }
 
 .list {
