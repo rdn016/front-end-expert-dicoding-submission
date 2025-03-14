@@ -23,6 +23,7 @@ button,
  #cancel {
   min-width: 44px;
   min-height: 44px;
+  z-index: 99999;
 }
 /* ===== Desktop Header & Navbar (tetap sama) ===== */
 header {
@@ -38,8 +39,7 @@ nav {
   display: flex;
   margin: auto;
   width: 100%;
-  margin-top: 10px;
-  padding: 0 2rem;
+  padding: .5rem 4rem;
 }
 
 nav ul li a {
@@ -69,6 +69,7 @@ nav ul li a:hover::after {
 #judul {
   font-weight: bolder;
   font-size: 24px;
+  margin-top: 10px;
 }
 
 #span {
@@ -80,6 +81,13 @@ nav ul li a:hover::after {
   border: none;
   font-size: 1.2rem;
   margin-top: 3px;
+  cursor: pointer;
+}
+
+.user-menu {
+  position: absolute;
+  background-color: #fff;
+  width: 110px;
 }
 
 /* ===== Desktop Navbar ===== */
@@ -98,7 +106,7 @@ nav ul li a:hover::after {
   position: fixed;
   top: 0;
   right: -100%;
-  width: 250px;
+  width: 150px;
   height: 100vh;
   background-color: #ffffff;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
@@ -129,7 +137,7 @@ nav ul li a:hover::after {
   color: black;
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -138,6 +146,13 @@ nav ul li a:hover::after {
   /* Sembunyikan desktop nav di mobile */
   .desktop-nav {
     display: none;
+  }
+  nav{
+    padding: 1rem 1rem;
+  }
+
+  #judul{
+    margin-top: 0;
   }
 
   /* Tampilkan mobile menu icon */
@@ -167,7 +182,7 @@ nav ul li a:hover::after {
   min-height: 95vh;
   padding-top: 60px;
   position: relative;
-  background: url(../public/hero/hero-image-large.webp) no-repeat;
+  background: url(../assets/hero/hero-image-large.webp) no-repeat;
   background-size: cover;
 }
 
@@ -204,7 +219,7 @@ nav ul li a:hover::after {
 
 @media screen and (max-width: 780px) {
   .hero {
-    background: url(../public/hero/hero-image-small.webp) no-repeat;
+    background: url(../assets/hero/hero-image-small.webp) no-repeat;
     background-size: cover;
   }
 }
@@ -218,23 +233,21 @@ nav ul li a:hover::after {
   margin-bottom: 1rem;
 }
 
-.list {
+.list{
   width: 85%;
   margin: auto;
 }
 
 .list-cards {
   display: grid;
-  gap: 16px;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 240px));
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 220px));
   place-content: center;
 }
 
 .card {
-  width: 240px;
-  padding: 20px;
+  padding: 1rem;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.162);
-  height: 270px;
 }
 
 .card-head {
@@ -300,7 +313,6 @@ nav ul li a:hover::after {
 }
 
 .skeleton-image {
-  width: 200px;
   height: 150px;
   margin-bottom: 6px;
   animation: shimmer 1.5s infinite linear;
