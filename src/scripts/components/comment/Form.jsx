@@ -5,16 +5,6 @@ const ReviewForm = ({ submitHandler }) => {
       <h2>Submit Your Review</h2>
       <form id="reviewForm" onSubmit={submitHandler}>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            required
-            placeholder="Your name"
-          />
-        </div>
-        <div className="form-group">
           <label htmlFor="review">Review:</label>
           <textarea
             id="review"
