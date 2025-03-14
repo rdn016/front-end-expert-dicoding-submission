@@ -59,7 +59,7 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">About Us</Link>
+            <a href="#">About Us</a>
           </li>
           <li>
             <Link to="/liked">Liked Restaurant</Link>
@@ -111,16 +111,16 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to="/about" onClick={toggleMobileMenu}>
+            <a href="#about" onClick={toggleMobileMenu}>
               About Us
-            </Link>
+            </a>
           </li>
           <li>
             <Link to="/liked" onClick={toggleMobileMenu}>
               Liked Restaurant
             </Link>
           </li>
-          <li>
+          <a>
             {token ? (
               <button
                 onClick={() => {
@@ -145,7 +145,7 @@ const Header = () => {
                 </li>
               </>
             )}
-          </li>
+          </a>
         </ul>
       </div>
     </header>
