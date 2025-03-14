@@ -1,5 +1,3 @@
-// restaurantApi.js
-
 const BASE_URL = "http://localhost:3000/api"; // Ubah ke endpoint backend lo
 
 /**
@@ -44,13 +42,13 @@ export const getRestaurantDetail = async (id) => {
  * @param {string} id - ID restoran.
  * @returns {Promise<Object>} JSON response yang berisi list review terupdate.
  */
-export const postReview = async (reviewData, id) => {
+export const postReview = async (reviewData) => {
   const token = localStorage.getItem("token");
   if (!token) {
     throw new Error("User not authenticated");
   }
   try {
-    const response = await fetch(`${BASE_URL}/postReview?id=${id}`, {
+    const response = await fetch(`${BASE_URL}/add-review"`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -139,5 +137,43 @@ export const getAllLikedRestaurants = async () => {
   } catch (error) {
     console.error("Error getting all liked restaurants:", error);
     return [];
+  }
+};
+/* api fetching untuk handle login user */
+export const loginUser = async (username, password) => {
+  try {
+    const response = await fetch(`http://localhost:3000/api/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password }),
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.token; // Return the token from the response
+  } catch (error) {
+    console.error("Error logging in:", error);
+    throw error; // Rethrow the error for handling in the calling function
+  }
+};
+
+/* handler buat register */
+export const register = async (username, password) => {
+  try {
+    const response = (await fetch(`${BASE_URL}/register`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({username, password})
+    }))
+
+    await response.json();
+
+  } catch (err) {
+    console.error(err);
   }
 };
