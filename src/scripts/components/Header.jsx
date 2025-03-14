@@ -56,10 +56,10 @@ const Header = () => {
         {/* Desktop Navbar */}
         <ul id="navbar" tabIndex="0" className="desktop-nav">
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/#">Home</Link>
           </li>
           <li>
-            <a href="#">About Us</a>
+            <a href="/#about-us">About Us</a>
           </li>
           <li>
             <Link to="/liked">Liked Restaurant</Link>
@@ -75,8 +75,7 @@ const Header = () => {
               <ul className="user-menu">
                 {token ? (
                   <li onClick={handleLogout}>
-                    <span>Logout</span>
-                    <i className="fa fa-sign-out"></i>
+                    <a style={{cursor: 'pointer'}}>Logout</a>
                   </li>
                 ) : (
                   <>
@@ -106,12 +105,12 @@ const Header = () => {
       >
         <ul>
           <li>
-            <Link to="/" onClick={toggleMobileMenu}>
+            <Link to="/#" onClick={toggleMobileMenu}>
               Home
             </Link>
           </li>
           <li>
-            <a href="#about" onClick={toggleMobileMenu}>
+            <a href="#about-us" onClick={toggleMobileMenu}>
               About Us
             </a>
           </li>
