@@ -2,20 +2,34 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { register } from "../../../api/restaurantApi";
 
 /**
  * RegisterPage - Halaman registrasi.
  * Proses registrasi disimulasikan, setelah registrasi langsung arahkan ke login.
  */
 const RegisterPage = () => {
+  const validateForm = () => {
+    if (!username) {
+      toast.error("Username is required!");
+      return false;
+    }
+    if (!password) {
+      toast.error("Password is required!");
+      return false;
+    }
+    return true;
+  };
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    if (username && password) {
-      toast.success("Registrasi berhasil! Silahkan login.");
+    if (validateForm()) {
+      await register(username, password);
+      toast.success("berhasil membuat akun");
       navigate("/login");
     } else {
       toast.error("Username dan password wajib diisi!");
@@ -25,6 +39,7 @@ const RegisterPage = () => {
   return (
     <main className="auth-page">
       <h1>Register</h1>
+      <p>Register akun anda </p>
       <form onSubmit={handleRegister}>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
@@ -48,6 +63,9 @@ const RegisterPage = () => {
           />
         </div>
         <button type="submit">Register</button>
+        <p>
+          Already have an account? <a href="/login">Login here</a>
+        </p>
       </form>
     </main>
   );
