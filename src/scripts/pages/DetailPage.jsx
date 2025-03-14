@@ -30,7 +30,7 @@ const DetailPage = () => {
           toast.error("Restaurant not found.");
         }
       } catch (error) {
-        toast.error("Failed to fetch restaurant details.");
+        toast.error("Failed to fetch restaurant details. Error: " + error);
       } finally {
         setLoading(false);
       }
@@ -56,7 +56,7 @@ const DetailPage = () => {
     if (name && review) {
       try {
         const reviewData = { name, review };
-        const updatedReviews = await postReview(reviewData, id);
+        const updatedReviews = await postReview(reviewData);
         if (updatedReviews) {
           setReviews(updatedReviews);
           form.reset();
@@ -64,7 +64,7 @@ const DetailPage = () => {
           toast.error("Gagal menambahkan review");
         }
       } catch (error) {
-        toast.error("Failed to submit review.");
+        toast.error("Failed to submit review. Error: " + error);
       }
     }
   };
