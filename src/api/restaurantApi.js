@@ -42,28 +42,35 @@ export const getRestaurantDetail = async (id) => {
  * @param {string} id - ID restoran.
  * @returns {Promise<Object>} JSON response yang berisi list review terupdate.
  */
-export const postReview = async (reviewData) => {
+export const postReview = async (restaurantId, review) => {
   const token = localStorage.getItem("token");
   if (!token) {
     throw new Error("User not authenticated");
   }
+
   try {
-    const response = await fetch(`${BASE_URL}/add-review"`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`,
-      },
-      body: JSON.stringify(reviewData),
-    });
+    const response = await fetch(
+      `${BASE_URL}/detail/${restaurantId}/review`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token,
+        },
+        body: JSON.stringify({ review }),
+      }
+    );
+
+    const data = await response.json();
+
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(data.error || "Gagal menambahkan review");
     }
-    const responseJson = await response.json();
-    return responseJson.customerReviews;
+
+    return data;
   } catch (error) {
     console.error("Error posting review:", error);
-    return null;
+    throw error;
   }
 };
 
