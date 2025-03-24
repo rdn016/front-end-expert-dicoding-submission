@@ -42,32 +42,38 @@ const DetailPage = () => {
    * Handle review form submission.
    * Cek autentikasi, kalau belum login, munculin toast dan arahkan ke /login.
    */
-  const handleReviewSubmit = async (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const review = form.review.value;
+const handleReviewSubmit = async (event) => {
+  event.preventDefault();
+  const form = event.target;
+  const reviewText = form.review.value;
 
-    if (!localStorage.getItem("token")) {
-      toast.error("Kamu harus login dulu ya!");
-      return;
-    }
+  if (!reviewText.trim()) {
+    toast.error("Review tidak boleh kosong!");
+    return;
+  }
 
-    if (name && review) {
-      try {
-        const reviewData = { name, review };
-        const updatedReviews = await postReview(reviewData);
-        if (updatedReviews) {
-          setReviews(updatedReviews);
-          form.reset();
-        } else {
-          toast.error("Gagal menambahkan review");
-        }
-      } catch (error) {
-        toast.error("Failed to submit review. Error: " + error);
+  if (!localStorage.getItem("token")) {
+    toast.error("Kamu harus login dulu ya!");
+    return;
+  }
+
+  try {
+    const response = await postReview(id, reviewText);
+
+    if (response && response.message === "Review berhasil ditambahkan") {
+      // Refresh data untuk mendapatkan review terbaru
+      const updatedData = await getRestaurantDetail(id);
+      if (updatedData && updatedData.restaurant) {
+        setReviews(updatedData.restaurant.customerReviews || []);
+        form.reset();
+        toast.success(response.message);
       }
     }
-  };
+  } catch (error) {
+    const errorMessage = error.response?.data?.error || error.message;
+    toast.error(`Gagal menambahkan review: ${errorMessage}`);
+  }
+};
 
   if (loading) {
     return (
