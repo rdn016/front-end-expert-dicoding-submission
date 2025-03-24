@@ -11,11 +11,11 @@ import { toast } from "react-toastify";
 const LoginPage = () => {
   const validateForm = () => {
     if (!username) {
-      toast.error("Username is required!");
+      toast.error("Username wajib di isi");
       return false;
     }
     if (!password) {
-      toast.error("Password is required!");
+      toast.error("Password wajib di isi");
       return false;
     }
     return true;
@@ -31,13 +31,15 @@ const LoginPage = () => {
       try {
         const token = await loginUser(username, password); // Call the loginUser function
         localStorage.setItem("token", token);
-        toast.success("Login berhasil!");
+        toast.success("Login berhasil");
         navigate("/");
-      } catch (error) {
-        toast.error("Login gagal! " + error.message); // Handle error
+      } catch (err) {
+        toast.error("pastikan username dan password benar!"); // Handle error
+        console.log(err);
+        console.clear()
       }
     } else {
-      toast.error("Username dan password wajib diisi!");
+      toast.error("Username dan password wajib di isi");
     }
   };
 

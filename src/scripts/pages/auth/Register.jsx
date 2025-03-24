@@ -11,11 +11,11 @@ import { register } from "../../../api/restaurantApi";
 const RegisterPage = () => {
   const validateForm = () => {
     if (!username) {
-      toast.error("Username is required!");
+      toast.error("Username wajib di isi!");
       return false;
     }
     if (!password) {
-      toast.error("Password is required!");
+      toast.error("Password wajib di isi!");
       return false;
     }
     return true;
@@ -31,8 +31,6 @@ const RegisterPage = () => {
       await register(username, password);
       toast.success("berhasil membuat akun");
       navigate("/login");
-    } else {
-      toast.error("Username dan password wajib diisi!");
     }
   };
 
