@@ -632,29 +632,38 @@ footer {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: #f9f9f9;
+  background-color: #ffd966;
 }
 
-.auth-page h1 {
+.user-form{
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.auth-header {
+  text-align: center;
+}
+.user-form h1 {
   color: #333;
 }
 
-.auth-page p {
+.user-form p {
   margin-bottom: 1rem;
 }
 
 .auth-page .form-group {
   margin-bottom: 16px;
-  width: 300px;
+  width: 320px;
 }
 
-.auth-page label {
+.auth-page .form-group label {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
 }
 
-.auth-page input {
+.auth-page .form-group input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
