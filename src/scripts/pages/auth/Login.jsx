@@ -43,35 +43,40 @@ const LoginPage = () => {
 
   return (
     <main className="auth-page">
-      <h1>Login</h1>
-      <p>log in ke akun anda</p>
-      <form onSubmit={handleLogin}>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            placeholder="Your username"
-          />
+      <div className="user-form">
+        <div className="auth-header">
+          <h1>Login</h1>
+          <p>log in ke akun anda</p>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            placeholder="Your password"
-          />
-        </div>
-        <button type="submit">Login</button>
-        <p>
-          Dont have an account? <a href="/register">Register here</a>
-        </p>
-      </form>
+
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <label htmlFor="username">Username:</label>
+            <input
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              placeholder="Your username"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password:</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Your password"
+            />
+          </div>
+          <button type="submit">Login</button>
+          <p>
+            Dont have an account? <a href="/register">Register here</a>
+          </p>
+        </form>
+      </div>
     </main>
   );
 };
