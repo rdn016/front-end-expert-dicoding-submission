@@ -30,12 +30,12 @@ const LikedPage = () => {
         <div className="list-cards" id="list-cards">
           {loading ? (
             <p>Loading...</p>
-          ) : likedRestaurants.length > 0 ? (
-            likedRestaurants.map((restaurant) => (
+          ) : likedRestaurants.restaurants.length > 0 ? (
+            likedRestaurants.restaurants.map((restaurant) => (
               <Card key={restaurant.id} restaurant={restaurant} />
             ))
           ) : (
-            <p>Kamu belum menyukai restoran.</p>
+            <h1 id="no-liked-restaurants">Kamu belum menyukai restoran</h1>
           )}
         </div>
       </main>
