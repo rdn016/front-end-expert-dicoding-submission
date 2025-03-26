@@ -8,19 +8,16 @@
   scroll-behavior: smooth;
   font-display: optional;
 }
-html {
-  height: 100%;
-}
-body {
+#root {
   display: flex;
-  min-height: 100%;
+  min-height: 100vh;
   flex-direction: column;
 }
 
 a,
 button,
- #btn,
- #cancel {
+#btn,
+#cancel {
   min-width: 44px;
   min-height: 44px;
   z-index: 99999;
@@ -39,7 +36,7 @@ nav {
   display: flex;
   margin: auto;
   width: 100%;
-  padding: .5rem 4rem;
+  padding: 0.5rem 4rem;
 }
 
 nav ul li a {
@@ -88,7 +85,7 @@ nav ul li a:hover::after {
   position: absolute;
   background-color: #fff;
   width: 115px;
-  padding-bottom: .3rem;
+  padding-bottom: 0.3rem;
 }
 
 /* ===== Desktop Navbar ===== */
@@ -148,11 +145,11 @@ nav ul li a:hover::after {
   .desktop-nav {
     display: none;
   }
-  nav{
+  nav {
     padding: 1rem 1rem;
   }
 
-  #judul{
+  #judul {
     margin-top: 0;
   }
 
@@ -162,8 +159,6 @@ nav ul li a:hover::after {
     font-size: 30px;
   }
 }
-
-
 
 /* Landing Page */
 .moto {
@@ -234,7 +229,7 @@ nav ul li a:hover::after {
   margin-bottom: 1rem;
 }
 
-.list{
+.list {
   width: 85%;
   margin: auto;
 }
@@ -285,7 +280,6 @@ nav ul li a:hover::after {
     margin-left: 0;
   }
 }
-
 
 /* Footer */
 :root {
@@ -532,7 +526,7 @@ footer {
   color: white;
   cursor: pointer;
 }
-/* empty like idb */
+/* empty liked restaurant */
 #list-cards.no-liked {
   display: flex;
   justify-content: center;
@@ -559,7 +553,7 @@ footer {
   margin-bottom: 16px;
   color: var(--accent-color);
 }
- .form-group {
+.form-group {
   margin-bottom: 16px;
 }
 
@@ -632,10 +626,11 @@ footer {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  width: 100%;
   background-color: #ffd966;
 }
 
-.user-form{
+.user-form {
   background-color: #fff;
   padding: 1rem;
   border-radius: 8px;
@@ -654,7 +649,6 @@ footer {
 
 .auth-page .form-group {
   margin-bottom: 16px;
-  width: 320px;
 }
 
 .auth-page .form-group label {
