@@ -74,78 +74,26 @@ export const postReview = async (restaurantId, review) => {
   }
 };
 
-/**
- * Menyukai restoran (menambah ke daftar liked).
- * Untuk demo, kita simulasikan dengan localStorage.
- * @param {Object} restaurant - Objek restoran.
- * @returns {Promise<Object>}
- */
-export const putRestaurant = async (restaurant) => {
-  try {
-    let likedRestaurants =
-      JSON.parse(localStorage.getItem("likedRestaurants")) || [];
-    if (!likedRestaurants.find((r) => r.id === restaurant.id)) {
-      likedRestaurants.push(restaurant);
-      localStorage.setItem(
-        "likedRestaurants",
-        JSON.stringify(likedRestaurants)
-      );
-    }
-    return restaurant;
-  } catch (error) {
-    console.error("Error liking restaurant:", error);
-    return null;
-  }
-};
 
-/**
- * Menghapus restoran dari daftar liked.
- * @param {string} id - ID restoran.
- * @returns {Promise<Object>}
- */
-export const deleteRestaurant = async (id) => {
-  try {
-    let likedRestaurants =
-      JSON.parse(localStorage.getItem("likedRestaurants")) || [];
-    likedRestaurants = likedRestaurants.filter((r) => r.id !== id);
-    localStorage.setItem("likedRestaurants", JSON.stringify(likedRestaurants));
-    return { success: true };
-  } catch (error) {
-    console.error("Error unliking restaurant:", error);
-    return null;
-  }
-};
-
-/**
- * Mengambil restoran liked berdasarkan id.
- * @param {string} id - ID restoran.
- * @returns {Promise<Object>}
- */
-export const getLikedRestaurant = async (id) => {
-  try {
-    let likedRestaurants =
-      JSON.parse(localStorage.getItem("likedRestaurants")) || [];
-    return likedRestaurants.find((r) => r.id === id) || null;
-  } catch (error) {
-    console.error("Error getting liked restaurant:", error);
-    return null;
-  }
-};
-
-/**
- * Mengambil semua restoran yang disukai.
- * @returns {Promise<Array>} Array restoran liked.
- */
 export const getAllLikedRestaurants = async () => {
+  const token = localStorage.getItem("token")
   try {
-    let likedRestaurants =
-      JSON.parse(localStorage.getItem("likedRestaurants")) || [];
-    return likedRestaurants;
+    const response = await fetch(`${BASE_URL}/liked`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
   } catch (error) {
     console.error("Error getting all liked restaurants:", error);
     return [];
   }
 };
+
 /* api fetching untuk handle login user */
 export const loginUser = async (username, password) => {
   try {
