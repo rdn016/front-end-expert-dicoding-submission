@@ -1,5 +1,5 @@
 const BASE_URL = "http://localhost:3000/api"; // Ubah ke endpoint backend lo
-
+const token = localStorage.getItem("token");
 /**
  * Mengambil daftar restoran dari API.
  * @returns {Promise<Object>} JSON response yang berisi list restoran.
@@ -24,7 +24,12 @@ export const getRestaurants = async () => {
  */
 export const getRestaurantDetail = async (id) => {
   try {
-    const response = await fetch(`${BASE_URL}/detail/${id}`);
+    const response = await fetch(`${BASE_URL}/detail/${id}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+      },
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -43,23 +48,19 @@ export const getRestaurantDetail = async (id) => {
  * @returns {Promise<Object>} JSON response yang berisi list review terupdate.
  */
 export const postReview = async (restaurantId, review) => {
-  const token = localStorage.getItem("token");
   if (!token) {
     throw new Error("User not authenticated");
   }
 
   try {
-    const response = await fetch(
-      `${BASE_URL}/detail/${restaurantId}/review`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": token,
-        },
-        body: JSON.stringify({ review }),
-      }
-    );
+    const response = await fetch(`${BASE_URL}/detail/${restaurantId}/review`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+      },
+      body: JSON.stringify({ review }),
+    });
 
     const data = await response.json();
 
@@ -74,9 +75,9 @@ export const postReview = async (restaurantId, review) => {
   }
 };
 
-
+// ambil semua restoran yang disukai
 export const getAllLikedRestaurants = async () => {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/liked`, {
       headers: {
@@ -91,6 +92,48 @@ export const getAllLikedRestaurants = async () => {
   } catch (error) {
     console.error("Error getting all liked restaurants:", error);
     return [];
+  }
+};
+
+// sukai restoran
+export const likeRestaurant = async (restaurantId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(`${BASE_URL}/detail/${restaurantId}/like`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error liking restaurant:", error);
+    return null;
+  }
+};
+
+//unlike restoran
+export const unLikeRestaurant = async (restaurantId) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(`${BASE_URL}/detail/${restaurantId}/unlike`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": token,
+      },
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error("Error liking restaurant:", error);
+    return null;
   }
 };
 
@@ -118,16 +161,15 @@ export const loginUser = async (username, password) => {
 /* handler buat register */
 export const register = async (username, password) => {
   try {
-    const response = (await fetch(`${BASE_URL}/register`, {
-      method: 'POST',
+    const response = await fetch(`${BASE_URL}/register`, {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({username, password})
-    }))
+      body: JSON.stringify({ username, password }),
+    });
 
     await response.json();
-
   } catch (err) {
     console.error(err);
   }
