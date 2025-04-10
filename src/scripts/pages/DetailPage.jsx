@@ -6,6 +6,7 @@ import CommentCard from "../components/comment/ReviewCard";
 import ReviewForm from "../components/comment/Form";
 import { getRestaurantDetail, postReview } from "../../api/restaurantApi";
 import { toast } from "react-toastify";
+import LikeButtonInitiator from "../utils/likeButtonInitiator";
 
 /**
  * DetailPage - Menampilkan detail restoran dan review.
@@ -42,38 +43,38 @@ const DetailPage = () => {
    * Handle review form submission.
    * Cek autentikasi, kalau belum login, munculin toast dan arahkan ke /login.
    */
-const handleReviewSubmit = async (event) => {
-  event.preventDefault();
-  const form = event.target;
-  const reviewText = form.review.value;
+  const handleReviewSubmit = async (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const reviewText = form.review.value;
 
-  if (!reviewText.trim()) {
-    toast.error("Review tidak boleh kosong!");
-    return;
-  }
-
-  if (!localStorage.getItem("token")) {
-    toast.error("Kamu harus login dulu ya!");
-    return;
-  }
-
-  try {
-    const response = await postReview(id, reviewText);
-
-    if (response && response.message === "Review berhasil ditambahkan") {
-      // Refresh data untuk mendapatkan review terbaru
-      const updatedData = await getRestaurantDetail(id);
-      if (updatedData && updatedData.restaurant) {
-        setReviews(updatedData.restaurant.customerReviews || []);
-        form.reset();
-        toast.success(response.message);
-      }
+    if (!reviewText.trim()) {
+      toast.error("Review tidak boleh kosong!");
+      return;
     }
-  } catch (error) {
-    const errorMessage = error.response?.data?.error || error.message;
-    toast.error(`Gagal menambahkan review: ${errorMessage}`);
-  }
-};
+
+    if (!localStorage.getItem("token")) {
+      toast.error("Kamu harus login dulu ya!");
+      return;
+    }
+
+    try {
+      const response = await postReview(id, reviewText);
+
+      if (response && response.message === "Review berhasil ditambahkan") {
+        // Refresh data untuk mendapatkan review terbaru
+        const updatedData = await getRestaurantDetail(id);
+        if (updatedData && updatedData.restaurant) {
+          setReviews(updatedData.restaurant.customerReviews || []);
+          form.reset();
+          toast.success(response.message);
+        }
+      }
+    } catch (error) {
+      const errorMessage = error.response?.data?.error || error.message;
+      toast.error(`Gagal menambahkan review: ${errorMessage}`);
+    }
+  };
 
   if (loading) {
     return (
@@ -101,7 +102,7 @@ const handleReviewSubmit = async (event) => {
 
   const { name, city, rating, address, description, menus, pictureId } =
     restaurant;
-
+    
   return (
     <>
       <Header />
@@ -153,6 +154,7 @@ const handleReviewSubmit = async (event) => {
           <ReviewForm submitHandler={handleReviewSubmit} />
         </div>
       </main>
+      <LikeButtonInitiator restaurant={restaurant} />
       <Footer />
     </>
   );
