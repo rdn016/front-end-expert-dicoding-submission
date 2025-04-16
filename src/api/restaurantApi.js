@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const BASE_URL = "http://localhost:3000/api"; // Ubah ke endpoint backend lo
 const token = localStorage.getItem("token");
 // Get API key from environment variables
