@@ -1,0 +1,9 @@
+/* Import base styles */
+@import 'base.css';
+@import 'layout.css';
+
+/* Import page styles */
+@import 'pages/main-page.css';
+@import 'pages/detail-page.css';
+@import 'pages/liked-page.css';
+@import 'pages/auth-page.css';

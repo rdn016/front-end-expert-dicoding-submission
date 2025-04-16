@@ -1,0 +1,197 @@
+/* ===== Header & Navigation ===== */
+header {
+  width: 100%;
+  position: fixed;
+  background-color: white;
+  z-index: 99;
+}
+
+nav {
+  justify-content: space-between;
+  transition: all 0.5s ease;
+  display: flex;
+  margin: auto;
+  width: 100%;
+  padding: 0.5rem 4rem;
+}
+
+nav ul li a {
+  margin: 5px 20px 0 20px;
+  position: relative;
+  color: var(--header);
+  display: block;
+  line-height: 44px;
+  text-decoration: none;
+}
+
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1.5px;
+  background: black;
+  transition: all 0.3s;
+  width: 0;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+#judul {
+  font-weight: bolder;
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+#span {
+  color: #fa0;
+}
+
+.user-icon {
+  background-color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  margin-top: 3px;
+  cursor: pointer;
+}
+
+.user-menu {
+  position: absolute;
+  background-color: #fff;
+  width: 115px;
+  padding-bottom: 0.3rem;
+}
+
+/* ===== Desktop Navbar ===== */
+.desktop-nav {
+  display: flex;
+}
+
+/* ===== Mobile Menu Icon ===== */
+.mobile-menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+/* ===== Off-Canvas Mobile Navbar ===== */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 150px;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+  padding-top: 60px;
+  z-index: 100;
+  transition: right 0.3s ease-in-out;
+}
+
+.mobile-nav.open {
+  right: 0;
+}
+
+.mobile-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.mobile-nav ul li {
+  margin: 20px 0;
+  font-size: 20px;
+}
+
+.mobile-nav ul li a,
+.mobile-nav ul li button {
+  text-decoration: none;
+  color: black;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* ===== Responsive for Mobile ===== */
+@media (max-width: 575px) {
+  /* Hide desktop nav on mobile */
+  .desktop-nav {
+    display: none;
+  }
+  nav {
+    padding: 1rem 1rem;
+  }
+
+  #judul {
+    margin-top: 0;
+  }
+
+  /* Show mobile menu icon */
+  .mobile-menu-icon {
+    display: block;
+    font-size: 30px;
+  }
+}
+
+/* Footer */
+footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-around;
+  padding: 2rem 0;
+  margin-top: auto;
+  min-height: 140px;
+  bottom: 0;
+}
+
+.contact {
+  padding-right: 0;
+  width: 32%;
+}
+
+.about {
+  width: 30%;
+}
+
+.about-desc,
+.contact-list li,
+.footer p {
+  color: var(--child);
+}
+
+.about-desc,
+.contact-list li {
+  margin: 10px 0;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+
+@media screen and (max-width: 1024px) {
+  .about-desc,
+  .service-list li a,
+  .contact-list li,
+  .footer p {
+    font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about,
+  .contact {
+    width: 100%;
+    text-align: center;
+  }
+}

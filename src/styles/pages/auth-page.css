@@ -1,0 +1,60 @@
+/* Auth Login and Register Page */
+.auth-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100%;
+  background-color: #ffd966;
+}
+
+.user-form {
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.auth-header {
+  text-align: center;
+}
+
+.user-form h1 {
+  color: #333;
+}
+
+.user-form p {
+  margin-bottom: 1rem;
+}
+
+.auth-page .form-group {
+  margin-bottom: 16px;
+}
+
+.auth-page .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.auth-page .form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.auth-page button {
+  width: 100%;
+  padding: 10px;
+  background-color: #fa0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.auth-page p {
+  margin-top: 10px;
+  color: #666;
+}

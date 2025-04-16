@@ -1,0 +1,17 @@
+/* Liked Restaurant Page */
+.list.liked {
+  padding-top: 70px;
+}
+
+/* Empty liked restaurant */
+#list-cards.no-liked {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 125px;
+}
+
+#no-liked-restaurants {
+  position: relative;
+  font-size: 18px;
+}

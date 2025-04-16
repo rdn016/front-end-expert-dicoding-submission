@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  text-decoration: none;
+  list-style: none;
+  scroll-behavior: smooth;
+  font-display: optional;
+}
+
+:root {
+  --header: #34364a;
+  --child: #b0b0b0;
+  --text-color: #333333;
+  --accent-color: #ffd966;
+  --border-color: #f0e1c2;
+}
+
+#root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+a,
+button,
+#btn,
+#cancel {
+  min-width: 44px;
+  min-height: 44px;
+  z-index: 99999;
+}
+
+#skip-button {
+  position: absolute;
+  top: -50px;
+  font-size: 22px;
+  left: 0;
+  background-color: red;
+  color: white;
+  padding: 5px;
+  z-index: 99999;
+}
+
+#skip-button:focus {
+  top: 0;
+}
