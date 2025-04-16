@@ -49,27 +49,77 @@ nav ul li a:hover::after {
   color: #fa0;
 }
 
+/* Enhanced User Icon and Menu */
 .user-icon {
   background-color: #fff;
   border: none;
   font-size: 1.2rem;
   margin-top: 3px;
   cursor: pointer;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.user-icon:hover {
+  transform: scale(1.1);
 }
 
 .user-menu {
   position: absolute;
   background-color: #fff;
-  width: 115px;
-  padding-bottom: 0.3rem;
+  width: 150px;
+  padding: 0.5rem 0;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  right: 0;
+  top: 45px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  overflow: hidden;
+  z-index: 1000;
 }
 
-/* ===== Desktop Navbar ===== */
+/* Show user menu with animation */
+.user-menu:global(.show) {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.user-menu li {
+  margin: 0;
+  transition: background-color 0.2s ease;
+}
+
+/* Override the underline effect for user menu links */
+.user-menu li a {
+  padding: 10px 20px;
+  display: block;
+  color: var(--header);
+  transition: all 0.2s ease;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Remove the underline effect for user menu links */
+.user-menu li a::after {
+  display: none;
+}
+
+.user-menu li:hover {
+  background-color: #f5f5f5;
+}
+
+.logout-btn {
+  margin-left: .5rem;
+}
+
 .desktop-nav {
   display: flex;
 }
 
-/* ===== Mobile Menu Icon ===== */
 .mobile-menu-icon {
   display: none;
   cursor: pointer;

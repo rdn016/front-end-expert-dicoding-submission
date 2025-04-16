@@ -13,6 +13,8 @@ const Header = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const mobileMenuRef = useRef(null);
+  const userMenuRef = useRef(null);
+  const userIconRef = useRef(null);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -24,9 +26,14 @@ const Header = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
-  // Handle klik di luar menu untuk menutup off-canvas
+  const toggleUserMenu = () => {
+    setShowUserMenu(!showUserMenu);
+  };
+
+  // Handle clicks outside menus to close them
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Handle mobile menu clicks
       if (
         mobileMenuRef.current &&
         !mobileMenuRef.current.contains(event.target) &&
@@ -34,18 +41,39 @@ const Header = () => {
       ) {
         setMobileMenuOpen(false);
       }
+      
+      // Handle user menu clicks
+      if (
+        userMenuRef.current && 
+        !userMenuRef.current.contains(event.target) &&
+        !userIconRef.current.contains(event.target)
+      ) {
+        setShowUserMenu(false);
+      }
     };
 
-    if (mobileMenuOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
+    document.addEventListener("mousedown", handleClickOutside);
+    
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [mobileMenuOpen]);
+  }, [mobileMenuOpen, showUserMenu]);
+
+  // Apply animation class to user menu
+  useEffect(() => {
+    const userMenu = userMenuRef.current;
+    if (userMenu) {
+      if (showUserMenu) {
+        userMenu.style.opacity = "1";
+        userMenu.style.visibility = "visible";
+        userMenu.style.transform = "translateY(0)";
+      } else {
+        userMenu.style.opacity = "0";
+        userMenu.style.visibility = "hidden";
+        userMenu.style.transform = "translateY(-10px)";
+      }
+    }
+  }, [showUserMenu]);
 
   return (
     <header>
@@ -66,29 +94,28 @@ const Header = () => {
           </li>
           <li>
             <button
-              onClick={() => setShowUserMenu(!showUserMenu)}
+              ref={userIconRef}
+              onClick={toggleUserMenu}
               className="user-icon"
             >
               <i className="fa fa-user"></i>
             </button>
-            {showUserMenu && (
-              <ul className="user-menu">
-                {token ? (
-                  <li onClick={handleLogout}>
-                    <a style={{cursor: 'pointer'}}>Logout</a>
+            <ul ref={userMenuRef} className="user-menu">
+              {token ? (
+                <li onClick={handleLogout}>
+                  <a style={{cursor: 'pointer'}}>Logout</a>
+                </li>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login">Login</Link>
                   </li>
-                ) : (
-                  <>
-                    <li>
-                      <Link to="/login">Login</Link>
-                    </li>
-                    <li>
-                      <Link to="/register">Sign Up</Link>
-                    </li>
-                  </>
-                )}
-              </ul>
-            )}
+                  <li>
+                    <Link to="/register">Sign Up</Link>
+                  </li>
+                </>
+              )}
+            </ul>
           </li>
         </ul>
 
@@ -110,9 +137,9 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <a href="#about-us" onClick={toggleMobileMenu}>
+            <Link href="#about-us" onClick={toggleMobileMenu}>
               About Us
-            </a>
+            </Link>
           </li>
           <li>
             <Link to="/liked" onClick={toggleMobileMenu}>
@@ -121,15 +148,15 @@ const Header = () => {
           </li>
           <a>
             {token ? (
-              <button
+              <a
                 onClick={() => {
                   toggleMobileMenu();
                   handleLogout();
                 }}
                 className="user-menu-btn"
               >
-                Logout <i className="fa fa-sign-out"></i>
-              </button>
+                Logout <i className="fa fa-sign-out logout-btn"></i>
+              </a>
             ) : (
               <>
                 <li>
