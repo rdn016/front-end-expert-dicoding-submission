@@ -1,12 +1,20 @@
+/* eslint-disable no-undef */
 const BASE_URL = "http://localhost:3000/api"; // Ubah ke endpoint backend lo
 const token = localStorage.getItem("token");
+// Get API key from environment variables
+const API_KEY = import.meta.env.VITE_API_KEY 
+
 /**
  * Mengambil daftar restoran dari API.
  * @returns {Promise<Object>} JSON response yang berisi list restoran.
  */
 export const getRestaurants = async () => {
   try {
-    const response = await fetch(`${BASE_URL}/list`);
+    const response = await fetch(`${BASE_URL}/list`, {
+      headers: {
+        "X-API-KEY": API_KEY
+      }
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -28,6 +36,7 @@ export const getRestaurantDetail = async (id) => {
       headers: {
         "Content-Type": "application/json",
         "Authorization": token,
+        "X-API-KEY": API_KEY
       },
     });
     if (!response.ok) {
@@ -58,6 +67,7 @@ export const postReview = async (restaurantId, review) => {
       headers: {
         "Content-Type": "application/json",
         "Authorization": token,
+        "X-API-KEY": API_KEY
       },
       body: JSON.stringify({ review }),
     });
@@ -83,6 +93,7 @@ export const getAllLikedRestaurants = async () => {
       headers: {
         "Content-Type": "application/json",
         "Authorization": token,
+        "X-API-KEY": API_KEY
       },
     });
     if (!response.ok) {
@@ -104,6 +115,7 @@ export const likeRestaurant = async (restaurantId) => {
       headers: {
         "Content-Type": "application/json",
         "Authorization": token,
+        "X-API-KEY": API_KEY
       },
     });
     if (!response.ok) {
@@ -125,6 +137,7 @@ export const unLikeRestaurant = async (restaurantId) => {
       headers: {
         "Content-Type": "application/json",
         "Authorization": token,
+        "X-API-KEY": API_KEY
       },
     });
     if (!response.ok) {
@@ -140,10 +153,11 @@ export const unLikeRestaurant = async (restaurantId) => {
 /* api fetching untuk handle login user */
 export const loginUser = async (username, password) => {
   try {
-    const response = await fetch(`http://localhost:3000/api/login`, {
+    const response = await fetch(`${BASE_URL}/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-API-KEY": API_KEY
       },
       body: JSON.stringify({ username, password }),
     });
@@ -165,6 +179,7 @@ export const register = async (username, password) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-API-KEY": API_KEY
       },
       body: JSON.stringify({ username, password }),
     });
