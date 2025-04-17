@@ -112,7 +112,7 @@ const DetailPage = () => {
             {name} <span>{rating} ★</span>
           </h1>
           <img
-            src={`https://restaurant-api.dicoding.dev/images/small/${pictureId}`}
+            src={pictureId}
             alt={`gambar ${name}`}
             crossOrigin="anonymous"
           />
