@@ -138,6 +138,13 @@ const Header = () => {
         className={`mobile-nav ${mobileMenuOpen ? "open" : ""}`}
       >
         <ul>
+          {/* Add username display */}
+          {token && (
+            <li className="mobile-user-info">
+              <i className="fa fa-user"></i>
+              <p>{username}</p>
+            </li>
+          )}
           <li>
             <Link to="/#" onClick={toggleMobileMenu}>
               Home
@@ -154,26 +161,17 @@ const Header = () => {
             </Link>
           </li>
           <a>
-            {/* kalau user udah login */}
             {token ? (
-              <>
-                <a
-                  onClick={() => {
-                    toggleMobileMenu();
-                    handleLogout();
-                  }}
-                  className="user-menu-btn"
-                >
-                  Logout <i className="fa fa-sign-out logout-btn"></i>
-                </a>
-                <li>
-                  <i className="fa fa-user"></i>
-                  <p>{username}</p>
-                </li>
-              </>
-            ) 
-            //kalau user belom login tampilkan login dan register menu
-            : (
+              <a
+                onClick={() => {
+                  toggleMobileMenu();
+                  handleLogout();
+                }}
+                className="user-menu-btn"
+              >
+                Logout <i className="fa fa-sign-out logout-btn"></i>
+              </a>
+            ) : (
               <>
                 <li>
                   <Link to="/login" onClick={toggleMobileMenu}>
