@@ -1,20 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
+import { getUsernameFromToken } from "../utils/auth";
 
-/**
- * Header - Navbar utama dengan opsi login/logout.
- * Di desktop, tampil seperti biasa sesuai styling sebelumnya.
- * Di mobile, navbar disembunyikan dan ditampilkan via off-canvas menu.
- */
 const Header = () => {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
   const mobileMenuRef = useRef(null);
   const userMenuRef = useRef(null);
+  
   const userIconRef = useRef(null);
+  const username = getUsernameFromToken()
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -41,10 +40,10 @@ const Header = () => {
       ) {
         setMobileMenuOpen(false);
       }
-      
+
       // Handle user menu clicks
       if (
-        userMenuRef.current && 
+        userMenuRef.current &&
         !userMenuRef.current.contains(event.target) &&
         !userIconRef.current.contains(event.target)
       ) {
@@ -53,7 +52,7 @@ const Header = () => {
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -101,11 +100,19 @@ const Header = () => {
               <i className="fa fa-user"></i>
             </button>
             <ul ref={userMenuRef} className="user-menu">
+              {/* kalau user udah login */}
               {token ? (
-                <li onClick={handleLogout}>
-                  <a style={{cursor: 'pointer'}}>Logout</a>
-                </li>
+                <>
+                  <li>
+                    <i className="fa fa-user"></i>
+                    <p>{username}</p>
+                  </li>
+                  <li onClick={handleLogout}>
+                    <a style={{ cursor: "pointer" }}>Logout</a>
+                  </li>
+                </>
               ) : (
+                // kalau user belom login
                 <>
                   <li>
                     <Link to="/login">Login</Link>
@@ -147,17 +154,26 @@ const Header = () => {
             </Link>
           </li>
           <a>
+            {/* kalau user udah login */}
             {token ? (
-              <a
-                onClick={() => {
-                  toggleMobileMenu();
-                  handleLogout();
-                }}
-                className="user-menu-btn"
-              >
-                Logout <i className="fa fa-sign-out logout-btn"></i>
-              </a>
-            ) : (
+              <>
+                <a
+                  onClick={() => {
+                    toggleMobileMenu();
+                    handleLogout();
+                  }}
+                  className="user-menu-btn"
+                >
+                  Logout <i className="fa fa-sign-out logout-btn"></i>
+                </a>
+                <li>
+                  <i className="fa fa-user"></i>
+                  <p>{username}</p>
+                </li>
+              </>
+            ) 
+            //kalau user belom login tampilkan login dan register menu
+            : (
               <>
                 <li>
                   <Link to="/login" onClick={toggleMobileMenu}>
