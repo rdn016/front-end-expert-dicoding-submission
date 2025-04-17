@@ -91,6 +91,22 @@ nav ul li a:hover::after {
 .user-menu li {
   margin: 0;
   transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+}
+
+.user-menu li i {
+  font-size: 16px;
+  color: #666;
+}
+
+.user-menu li p {
+  margin: 0;
+  color: var(--header);
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 /* Override the underline effect for user menu links */
@@ -134,7 +150,6 @@ nav ul li a:hover::after {
   height: 100vh;
   background-color: #ffffff;
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-  padding-top: 60px;
   z-index: 100;
   transition: right 0.3s ease-in-out;
 }
@@ -244,4 +259,26 @@ footer {
     width: 100%;
     text-align: center;
   }
+}
+
+
+/* Mobile User Info */
+.mobile-nav .mobile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.mobile-nav .mobile-user-info i {
+  font-size: 16px;
+  color: #666;
+}
+
+.mobile-nav .mobile-user-info p {
+  margin: 0;
+  color: var(--header);
+  font-size: 14px;
+  font-weight: 500;
 }
