@@ -10,7 +10,7 @@ const Card = ({ restaurant }) => {
         <p id="rating">★ {rating}</p>
       </div>
       <img
-        src={`https://restaurant-api.dicoding.dev/images/small/${pictureId}`}
+        src={pictureId}
         alt={`restoran ${name}`}
         crossOrigin="anonymous"
       />
