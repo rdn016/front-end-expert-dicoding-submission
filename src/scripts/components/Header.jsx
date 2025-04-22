@@ -21,6 +21,13 @@ const Header = () => {
     navigate("/");
   };
 
+  const handleLikedClick = (e) => {
+    if (!token) {
+      e.preventDefault();
+      toast.error("login dulu buat liat restoran yang disukai");
+    }
+  };
+
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
@@ -74,6 +81,19 @@ const Header = () => {
     }
   }, [showUserMenu]);
 
+  // Add a new function to handle About Us navigation
+  const navigateToAbout = (e) => {
+    e.preventDefault();
+    navigate('/');
+    // Use setTimeout to ensure navigation completes before scrolling
+    setTimeout(() => {
+      const aboutSection = document.getElementById('about-us');
+      if (aboutSection) {
+        aboutSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <header>
       <nav>
@@ -86,10 +106,10 @@ const Header = () => {
             <Link to="/#">Home</Link>
           </li>
           <li>
-            <a href="#about-us">About Us</a>
+            <a href="/#about-us" onClick={navigateToAbout}>About Us</a>
           </li>
           <li>
-            <Link to="/liked">Liked Restaurant</Link>
+            <Link to="/liked" onClick={handleLikedClick}>Liked Restaurant</Link>
           </li>
           <li>
             <button
@@ -151,12 +171,18 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <a href="#about-us" onClick={toggleMobileMenu}>
+            <a href="/#about-us" onClick={(e) => {
+              navigateToAbout(e);
+              toggleMobileMenu();
+            }}>
               About Us
             </a>
           </li>
           <li>
-            <Link to="/liked" onClick={toggleMobileMenu}>
+            <Link to="/liked" onClick={(e) => { 
+              handleLikedClick(e); 
+              if (token) toggleMobileMenu(); 
+            }}>
               Liked Restaurant
             </Link>
           </li>
