@@ -86,7 +86,7 @@ const Header = () => {
             <Link to="/#">Home</Link>
           </li>
           <li>
-            <a href="/#about-us">About Us</a>
+            <a href="#about-us">About Us</a>
           </li>
           <li>
             <Link to="/liked">Liked Restaurant</Link>
@@ -151,41 +151,42 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href="#about-us" onClick={toggleMobileMenu}>
+            <a href="#about-us" onClick={toggleMobileMenu}>
               About Us
-            </Link>
+            </a>
           </li>
           <li>
             <Link to="/liked" onClick={toggleMobileMenu}>
               Liked Restaurant
             </Link>
           </li>
-          <a>
-            {token ? (
+          {token ? (
+            <li>
               <a
                 onClick={() => {
                   toggleMobileMenu();
                   handleLogout();
                 }}
                 className="user-menu-btn"
+                style={{ cursor: "pointer" }}
               >
                 Logout <i className="fa fa-sign-out logout-btn"></i>
               </a>
-            ) : (
-              <>
-                <li>
-                  <Link to="/login" onClick={toggleMobileMenu}>
-                    Login
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/register" onClick={toggleMobileMenu}>
-                    Sign Up
-                  </Link>
-                </li>
-              </>
-            )}
-          </a>
+            </li>
+          ) : (
+            <>
+              <li>
+                <Link to="/login" onClick={toggleMobileMenu}>
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/register" onClick={toggleMobileMenu}>
+                  Sign Up
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </header>

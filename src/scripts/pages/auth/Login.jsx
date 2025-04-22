@@ -1,7 +1,7 @@
 // pages/Login.jsx
 import { useState } from "react";
-import { loginUser } from "../../../api/restaurantApi"; // Import the loginUser function
-import { useNavigate } from "react-router-dom";
+import { loginUser, } from "../../../api/restaurantApi"; // Import the loginUser function
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 /**
@@ -75,7 +75,7 @@ const LoginPage = () => {
           </div>
           <button type="submit">Login</button>
           <p>
-            Dont have an account? <a href="/register">Register here</a>
+            Dont have an account? <Link to="/register">Register here</Link>
           </p>
         </form>
       </div>

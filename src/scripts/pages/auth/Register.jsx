@@ -1,6 +1,6 @@
 // pages/Register.jsx
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { register } from "../../../api/restaurantApi";
 
@@ -65,7 +65,7 @@ const RegisterPage = () => {
           </div>
           <button type="submit">Register</button>
           <p>
-            Already have an account? <a href="/login">Login here</a>
+            Already have an account? <Link to="/login">Login here</Link>
           </p>
         </form>
       </div>
