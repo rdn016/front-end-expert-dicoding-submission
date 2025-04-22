@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000/api"; // Ubah ke endpoint backend lo
+const BASE_URL = "http://10.20.11.24:3000/api"; // Ubah ke endpoint backend lo
 const token = localStorage.getItem("token");
 // Get API key from environment variables
 const API_KEY = import.meta.env.VITE_API_KEY 
