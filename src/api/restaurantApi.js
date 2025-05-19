@@ -1,4 +1,5 @@
-const BASE_URL = "https://owanculinary.sijabright.my.id/api"; // Ubah ke endpoint backend lo
+//  const BASE_URL = "http://localhost:3000/api";
+const BASE_URL = "https://owanculinary.sijabright.my.id/api";
 const token = localStorage.getItem("token");
 // Get API key from environment variables
 const API_KEY = import.meta.env.VITE_API_KEY 
@@ -56,9 +57,7 @@ export const getRestaurantDetail = async (id) => {
  * @returns {Promise<Object>} JSON response yang berisi list review terupdate.
  */
 export const postReview = async (restaurantId, review) => {
-  if (!token) {
-    throw new Error("User not authenticated");
-  }
+
 
   try {
     const response = await fetch(`${BASE_URL}/detail/${restaurantId}/review`, {
@@ -86,7 +85,6 @@ export const postReview = async (restaurantId, review) => {
 
 // ambil semua restoran yang disukai
 export const getAllLikedRestaurants = async () => {
-  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/liked`, {
       headers: {
@@ -107,7 +105,6 @@ export const getAllLikedRestaurants = async () => {
 
 // sukai restoran
 export const likeRestaurant = async (restaurantId) => {
-  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/detail/${restaurantId}/like`, {
       method: "PUT",
@@ -129,7 +126,6 @@ export const likeRestaurant = async (restaurantId) => {
 
 //unlike restoran
 export const unLikeRestaurant = async (restaurantId) => {
-  const token = localStorage.getItem("token");
   try {
     const response = await fetch(`${BASE_URL}/detail/${restaurantId}/unlike`, {
       method: "DELETE",
